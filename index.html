@@ -21,29 +21,195 @@
     background:var(--bg);color:var(--ink);
     font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
     -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    transition:background-color 1.6s cubic-bezier(.4,0,.2,1);
   }
+  /* section 3 pe poora theme light ho jata hai */
+  body.lightbg{background:#eef1f4;}
+  body.lightbg .ai-sec .sec-head h2{color:#12151b;}
+  body.lightbg .ai-sec .sec-head .kicker{color:#5b6470;}
+  body.lightbg .acard{box-shadow:0 24px 50px rgba(20,30,45,.14);}
+  .ai-sec .sec-head h2,.ai-sec .sec-head .kicker{transition:color 1.6s cubic-bezier(.4,0,.2,1);}
+  /* light theme me footer bhi readable */
+  body.lightbg footer .logo{color:#12151b;}
+  body.lightbg footer{border-top-color:rgba(0,0,0,.1);}
+  body.lightbg .foot-links a{color:#5b6470;}
+  body.lightbg .copy{color:#7a828e;}
   ::selection{background:var(--accent);color:#fff;}
+  @media(hover:hover){ body{cursor:none;} a,button{cursor:none;} }
+
+  /* ---------- PRELOADER ---------- */
+  .preloader{
+    position:fixed;inset:0;background:#060607;z-index:200;
+    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;
+  }
+  .pre-name{
+    font-size:clamp(28px,5vw,54px);font-weight:800;letter-spacing:-.03em;
+    display:flex;overflow:hidden;
+  }
+  .pre-name span{display:inline-block;transform:translateY(110%);}
+  .pre-name .blue{color:inherit;}
+  .pre-bar{width:min(320px,60vw);height:2px;background:#1c1c20;border-radius:2px;overflow:hidden;}
+  .pre-bar i{display:block;height:100%;width:0%;background:var(--accent);}
+  .pre-count{font-size:12px;letter-spacing:.2em;color:var(--muted);font-variant-numeric:tabular-nums;}
+
+  /* ---------- CURSOR ---------- */
+  .cursor-dot,.cursor-ring{
+    position:fixed;top:-50px;left:-50px;pointer-events:none;z-index:150;
+    border-radius:50%;will-change:transform;
+  }
+  .cursor-dot{width:8px;height:8px;background:var(--accent);margin:-4px 0 0 -4px;}
+  .cursor-ring{width:36px;height:36px;margin:-18px 0 0 -18px;}
+  .ring-inner{
+    display:block;width:100%;height:100%;border-radius:50%;position:relative;
+    border:1.5px solid rgba(255,255,255,.35);
+    transition:transform .25s,border-color .25s,background .25s;
+  }
+  .cursor-ring.hovered .ring-inner{transform:scale(1.6);border-color:var(--accent);background:rgba(77,107,255,.12);}
+  .cursor-ring.play .ring-inner::after{
+    content:'PLAY';position:absolute;inset:0;display:grid;place-items:center;
+    font-size:6px;letter-spacing:.15em;font-weight:700;color:#fff;
+  }
+  .cursor-ring.play .ring-inner{transform:scale(1.8);background:var(--accent);border-color:var(--accent);}
+  @media(hover:none){.cursor-dot,.cursor-ring{display:none;}}
 
   /* ---------- NAV ---------- */
   nav{
-    max-width:1060px;margin:0 auto;padding:26px 24px;
+    position:fixed;top:0;left:0;right:0;z-index:60;
     display:flex;justify-content:space-between;align-items:center;
+    padding:22px clamp(20px,4vw,48px);
+    opacity:0;
+    background:transparent;
+    transition:background .5s;
   }
-  .logo{font-weight:800;font-size:20px;letter-spacing:-.03em;}
+  nav.scrolled{
+    background:rgba(10,10,11,.75);
+    backdrop-filter:blur(12px);
+  }
+  /* light theme me header bhi light */
+  body.lightbg nav.scrolled{background:rgba(238,241,244,.82);}
+  body.lightbg nav .logo{color:#12151b;}
+  body.lightbg nav .nav-links a{color:rgba(18,21,27,.75);text-shadow:none;}
+  body.lightbg nav .nav-links a:hover{color:#12151b;}
+  body.lightbg nav .cta{border-color:rgba(18,21,27,.35);color:#12151b;}
+  body.lightbg nav .cta:hover{background:var(--accent);border-color:var(--accent);color:#fff;}
+  nav .logo,nav .nav-links a,nav .cta{transition:color .6s ease,border-color .6s ease,background .25s;}
+  .logo{font-weight:700;font-size:20px;letter-spacing:-.03em;}
   .logo span{color:var(--accent);}
   .nav-links{display:flex;gap:28px;}
-  .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;}
-  .nav-links a:hover{color:var(--ink);}
+  .nav-links a{
+    color:rgba(255,255,255,.92);text-decoration:none;font-size:14px;font-weight:500;
+    transition:color .2s;text-shadow:0 1px 8px rgba(5,6,10,.35);
+  }
+  .nav-links a:hover{color:#fff;}
   .cta{
-    background:#1d1d21;border:1px solid var(--border);color:var(--ink);
-    padding:11px 22px;border-radius:999px;font-size:13.5px;font-weight:600;
-    text-decoration:none;transition:background .25s,border-color .25s;
+    background:transparent;border:1px solid rgba(255,255,255,.45);color:#fff;
+    padding:11px 22px;border-radius:999px;font-size:13.5px;font-weight:500;
+    text-decoration:none;transition:background .25s,border-color .25s;display:inline-block;
   }
   .cta:hover{background:var(--accent);border-color:var(--accent);}
 
+  /* ---------- CINEMATIC VIDEO HERO ---------- */
+  .hero3d{
+    position:relative;height:100svh;min-height:620px;
+    display:flex;align-items:flex-start;justify-content:center;
+    overflow:hidden;background:#05060a;
+  }
+  .hero-video{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;display:block;
+    will-change:transform;
+  }
+  .hero-shade{
+    position:absolute;inset:0;z-index:2;pointer-events:none;
+    background:linear-gradient(180deg,transparent 0%,transparent 74%,rgba(5,6,10,.55) 100%);
+  }
+  .hero-grain{
+    position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.18;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  }
+  .hero-inner{
+    position:relative;z-index:5;width:100%;
+    max-width:900px;margin:0 auto;padding:15vh 24px 0;
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+  }
+  .avail{
+    display:inline-flex;align-items:center;gap:9px;
+    border:1px solid var(--border);background:rgba(20,20,25,.6);backdrop-filter:blur(8px);
+    padding:8px 16px;border-radius:999px;
+    font-size:12px;font-weight:600;color:#b9e8c9;letter-spacing:.04em;
+    overflow:hidden;
+  }
+  .avail i{
+    width:7px;height:7px;border-radius:50%;background:#39d97e;flex-shrink:0;
+    animation:blink 2.4s ease-in-out infinite;
+  }
+  @keyframes blink{0%,100%{box-shadow:0 0 0 0 rgba(57,217,126,.5)}50%{box-shadow:0 0 0 6px rgba(57,217,126,0)}}
+  .hero-hi{
+    display:flex;align-items:center;gap:14px;margin-top:26px;overflow:hidden;justify-content:center;
+  }
+  .hero-hi .mini-dp{
+    width:44px;height:44px;border-radius:50%;overflow:hidden;flex-shrink:0;
+    border:2px solid rgba(255,255,255,.15);
+    background:linear-gradient(160deg,#4d6bff,#8b5cf6);
+  }
+  .hero-hi .mini-dp img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+  .hero-hi span{font-size:15px;color:var(--muted);}
+  .hero-hi b{color:var(--ink);font-weight:700;}
+  .hero-name{
+    margin-top:0;
+    font-size:clamp(44px,7vw,88px);font-weight:800;letter-spacing:-.04em;line-height:1.02;
+    color:#fff;
+  }
+  .hero-name .line{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em;}
+  .hero-name .line span{display:inline-block;}
+  .hero-name em{
+    font-style:italic;font-family:Georgia,'Times New Roman',serif;font-weight:400;
+    color:#fff;letter-spacing:-.01em;
+  }
+  .hero-bio{
+    margin-top:18px;max-width:520px;overflow:hidden;
+  }
+  .hero-bio span{
+    display:inline-block;font-size:15.5px;line-height:1.6;color:rgba(255,255,255,.88);
+    text-shadow:0 2px 14px rgba(5,6,10,.6);
+  }
+  .hero-bio b{color:#fff;font-weight:600;}
+  .hero-btns{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;justify-content:center;}
+  .btn-primary{
+    background:var(--accent);color:#fff;border:1px solid var(--accent);
+    padding:14px 28px;border-radius:999px;font-size:14px;font-weight:700;
+    text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+    transition:background .25s;
+  }
+  .btn-primary:hover{background:#3d55cc;}
+  .btn-ghost{
+    background:rgba(20,20,25,.5);color:var(--ink);border:1px solid var(--border);
+    padding:14px 28px;border-radius:999px;font-size:14px;font-weight:600;
+    text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+    backdrop-filter:blur(8px);transition:border-color .25s;
+  }
+  .btn-ghost:hover{border-color:var(--accent);}
+  .hero-mini{
+    display:flex;gap:44px;margin-top:44px;flex-wrap:wrap;justify-content:center;
+  }
+  .hero-mini .hm{overflow:hidden;}
+  .hero-mini b{font-size:20px;font-weight:800;letter-spacing:-.02em;display:block;font-variant-numeric:tabular-nums;}
+  .hero-mini span{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+  .scroll-cue{
+    position:absolute;bottom:26px;left:50%;translate:-50% 0;z-index:5;
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+    font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);
+  }
+  .scroll-cue i{
+    width:1px;height:38px;background:linear-gradient(180deg,var(--accent),transparent);
+    display:block;animation:drip 1.8s ease-in-out infinite;transform-origin:top;
+  }
+  @keyframes drip{0%{transform:scaleY(0)}45%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
+
   /* ---------- MARQUEE ---------- */
   .marquee{
-    max-width:1060px;margin:6px auto 0;padding:0 24px;overflow:hidden;
+    max-width:1060px;margin:6px auto 0;padding:0 24px;overflow:hidden;opacity:0;
     -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
             mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
   }
@@ -56,23 +222,412 @@
   .marquee-track b{color:var(--ink);font-weight:700;}
   @keyframes scroll{to{transform:translateX(-50%);}}
 
+  /* ---------- WORKS: PRODUCT UI MOTION ---------- */
+  .works-sec{max-width:1060px;margin:0 auto;padding:70px 24px 30px;}
+  .sec-head{margin-bottom:26px;}
+  .sec-head .kicker{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;}
+  .sec-head h2{
+    font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.03em;margin-top:8px;
+  }
+  .sec-head h2 em{font-style:italic;font-family:Georgia,serif;font-weight:400;color:var(--accent);}
+  .work-grid{
+    display:grid;gap:14px;
+    grid-template-columns:repeat(12,1fr);grid-auto-rows:92px;
+  }
+  .wcard{
+    position:relative;border-radius:var(--radius);overflow:hidden;
+    border:1px solid var(--border);background:var(--card);
+    opacity:0;transform:translateY(36px);
+  }
+  .wcard video{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    transition:transform .6s ease;display:block;
+  }
+  .wcard:hover video{transform:scale(1.045);}
+  .wcard .wfall{
+    position:absolute;inset:0;display:none;place-items:center;
+    font-size:26px;color:rgba(255,255,255,.6);
+  }
+  .wcard.empty .wfall{display:grid;}
+  .wcard.empty video{display:none;}
+  .wf-1{background:linear-gradient(150deg,#171730,#2c3f8f);}
+  .wf-2{background:linear-gradient(150deg,#241436,#6d3fb0);}
+  .wf-3{background:linear-gradient(150deg,#0f2733,#1f7d99);}
+  .wf-4{background:linear-gradient(150deg,#301427,#a3487d);}
+  .wf-5{background:linear-gradient(150deg,#132a1d,#2f7d55);}
+  .wf-6{background:linear-gradient(150deg,#33230f,#a06a2c);}
+  .wcard .wmeta{
+    position:absolute;left:0;right:0;bottom:0;z-index:3;
+    padding:16px 20px;pointer-events:none;
+    background:linear-gradient(180deg,transparent,rgba(5,5,8,.82));
+  }
+  .wcard .wmeta .kicker{color:#b9b9c4;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;}
+  .wcard .wmeta h3{font-size:16px;font-weight:700;letter-spacing:-.01em;margin-top:2px;}
+  .w-lg{grid-column:span 8;grid-row:span 4;}
+  .w-tall{grid-column:span 4;grid-row:span 4;}
+  .w-sm{grid-column:span 4;grid-row:span 3;}
+
+  /* ========== UI DEMOS (live coded motion) ========== */
+  .ui-demo{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    flex-direction:column;gap:22px;overflow:hidden;
+    background:radial-gradient(120% 100% at 50% 0%,#17171c 0%,#0e0e12 60%,#0a0a0d 100%);
+  }
+
+  /* ---- 1. CRED payment ---- */
+  .ud1-spot{
+    position:absolute;width:520px;height:520px;border-radius:50%;
+    background:radial-gradient(circle,rgba(120,130,255,.14),transparent 60%);
+    top:-30%;pointer-events:none;
+  }
+  .cc-glow{
+    position:absolute;width:340px;height:200px;border-radius:40px;
+    background:radial-gradient(ellipse,rgba(57,217,126,.22),transparent 65%);
+    opacity:0;pointer-events:none;will-change:opacity;
+    top:calc(50% - 130px);
+  }
+  .ccard{
+    position:relative;width:min(330px,74%);aspect-ratio:1.586;border-radius:20px;
+    background:linear-gradient(135deg,#212127 0%,#141418 45%,#1b1b21 100%);
+    border:1px solid rgba(255,255,255,.09);
+    box-shadow:0 30px 60px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.08);
+    padding:20px 22px;display:flex;flex-direction:column;justify-content:space-between;
+    overflow:hidden;will-change:transform;
+  }
+  .cc-shine{
+    position:absolute;top:-40%;bottom:-40%;width:46%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.10),transparent);
+    transform:translateX(-220%) rotate(12deg);pointer-events:none;
+  }
+  .cc-top{display:flex;justify-content:space-between;align-items:center;}
+  .cc-bank{font-size:11px;letter-spacing:.22em;font-weight:700;color:#d9d9e2;}
+  .cc-nfc{display:flex;gap:2.5px;transform:rotate(90deg);}
+  .cc-nfc i{width:4px;border-radius:4px;background:rgba(255,255,255,.35);}
+  .cc-nfc i:nth-child(1){height:7px}.cc-nfc i:nth-child(2){height:11px}.cc-nfc i:nth-child(3){height:15px}
+  .cc-chip{
+    width:38px;height:28px;border-radius:6px;
+    background:linear-gradient(135deg,#e8c56a,#b98d3b);
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.25), inset 0 6px 0 -3px rgba(255,255,255,.35);
+  }
+  .cc-num{font-size:15.5px;letter-spacing:.14em;color:#e8e8f0;font-variant-numeric:tabular-nums;}
+  .cc-bot{display:flex;justify-content:space-between;align-items:center;font-size:10.5px;letter-spacing:.16em;color:#9a9aa8;}
+  .cc-brand{display:flex;}
+  .cc-brand i{width:19px;height:19px;border-radius:50%;background:rgba(255,90,90,.85);}
+  .cc-brand i:last-child{background:rgba(255,190,70,.85);margin-left:-8px;mix-blend-mode:screen;}
+  .pay-btn{
+    position:relative;min-width:170px;height:48px;border-radius:999px;
+    background:#f2f2f5;color:#0c0c10;font-size:14.5px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+    box-shadow:0 14px 34px rgba(0,0,0,.45);
+  }
+  .pay-label{position:relative;z-index:2;}
+  .pay-ring{
+    position:absolute;width:22px;height:22px;border-radius:50%;
+    border:2.5px solid rgba(12,12,16,.2);border-top-color:#0c0c10;
+    opacity:0;
+  }
+  .pay-check{
+    position:absolute;z-index:2;font-size:19px;font-weight:800;color:#0c0c10;
+    opacity:0;transform:scale(.4);
+  }
+
+  /* ---- 2. music player ---- */
+  .mp{
+    width:min(240px,80%);border-radius:22px;padding:22px 20px 18px;
+    background:#17171d;border:1px solid rgba(255,255,255,.09);
+    box-shadow:0 26px 50px rgba(0,0,0,.5);
+    display:flex;flex-direction:column;align-items:center;
+  }
+  .mp-art{
+    position:relative;width:118px;height:118px;border-radius:50%;
+    background:#0b0b0e;
+    box-shadow:0 16px 34px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.10), 0 0 26px rgba(255,255,255,.05);
+  }
+  .mp-disc{
+    position:absolute;inset:0;border-radius:50%;overflow:hidden;will-change:transform;
+    /* vinyl grooves */
+    background:repeating-radial-gradient(circle at 50% 50%,#121215 0 2px,#1c1c22 2px 4.5px);
+  }
+  /* rotating light sheen — isse spin dikhta hai */
+  .mp-disc::before{
+    content:'';position:absolute;inset:0;border-radius:50%;
+    background:conic-gradient(from 18deg,
+      transparent 0deg, rgba(255,255,255,.14) 26deg, transparent 62deg,
+      transparent 168deg, rgba(255,255,255,.07) 200deg, transparent 238deg);
+  }
+  /* iridescent label (asymmetric colors = motion visible) */
+  .mp-label{
+    position:absolute;inset:0;margin:auto;width:48px;height:48px;border-radius:50%;
+    background:
+      radial-gradient(circle at 30% 36%,#ff8a5c,transparent 44%),
+      radial-gradient(circle at 70% 64%,#2bd4c2,transparent 46%),
+      radial-gradient(circle at 58% 26%,#e8c56a,transparent 38%),
+      radial-gradient(circle at 38% 72%,#4d6bff,transparent 40%),
+      #101014;
+    box-shadow:0 0 0 1px rgba(255,255,255,.08);
+  }
+  .mp-hole{
+    position:absolute;inset:0;margin:auto;width:15px;height:15px;border-radius:50%;
+    background:#ece5d8;z-index:2;
+  }
+  .mp-hole::after{
+    content:'';position:absolute;inset:0;margin:auto;width:6px;height:6px;border-radius:50%;
+    background:#17171d;
+  }
+  .mp-name{margin-top:14px;font-size:14.5px;font-weight:700;letter-spacing:-.01em;}
+  .mp-artist{font-size:11.5px;color:var(--muted);margin-top:2px;}
+  .mp-eq{display:flex;gap:3px;align-items:flex-end;height:20px;margin-top:12px;}
+  .mp-eq i{
+    width:3px;border-radius:3px;background:linear-gradient(180deg,#8b9cff,#4d6bff);
+    height:100%;transform:scaleY(.3);transform-origin:bottom;will-change:transform;
+  }
+  .mp-prog{position:relative;width:100%;height:4px;border-radius:4px;background:rgba(255,255,255,.12);margin-top:14px;}
+  .mp-prog i{
+    position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:4px;background:#fff;
+    transform:scaleX(0);transform-origin:left;will-change:transform;
+  }
+  .mp-prog b{
+    position:absolute;top:50%;left:0;margin-top:-5.5px;margin-left:-5.5px;
+    width:11px;height:11px;border-radius:50%;background:#fff;
+    box-shadow:0 2px 8px rgba(0,0,0,.5);will-change:transform;
+  }
+  .mp-time{display:flex;justify-content:space-between;width:100%;font-size:10px;color:var(--muted);margin-top:6px;font-variant-numeric:tabular-nums;}
+  .mp-ctrl{display:flex;gap:26px;align-items:center;margin-top:10px;font-size:15px;color:#d5d5de;}
+  .mp-play{
+    width:40px;height:40px;border-radius:50%;background:#fff;color:#0c0c10;
+    display:grid;place-items:center;font-size:15px;
+    box-shadow:0 10px 24px rgba(0,0,0,.45);
+  }
+
+  /* ---- 3. iOS controls ---- */
+  .ios-panel{
+    width:min(250px,82%);border-radius:20px;padding:18px;
+    background:#17171d;border:1px solid rgba(255,255,255,.09);
+    display:flex;flex-direction:column;gap:16px;
+  }
+  .ios-panel .row{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;font-weight:600;color:#e8e8ee;}
+  .tgl{
+    width:46px;height:28px;border-radius:999px;background:rgba(120,120,135,.4);
+    position:relative;transition:background .3s;flex-shrink:0;
+  }
+  .tgl i{
+    position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;
+    background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.35);
+    transition:transform .3s cubic-bezier(.34,1.56,.64,1);
+  }
+  .tgl.on{background:#34c759;}
+  .tgl.on i{transform:translateX(18px);}
+  .slide-row span{font-size:13px;}
+  .sld{position:relative;flex:1;height:5px;border-radius:5px;background:rgba(255,255,255,.14);margin-left:12px;}
+  .sld i{
+    position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:5px;background:#fff;
+    transform:scaleX(.3);transform-origin:left;will-change:transform;
+  }
+  .sld b{
+    position:absolute;top:50%;left:0;margin-top:-8px;margin-left:-8px;
+    width:16px;height:16px;border-radius:50%;background:#fff;
+    box-shadow:0 2px 8px rgba(0,0,0,.45);will-change:transform;
+  }
+  .seg{
+    position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;
+    background:rgba(120,120,135,.22);border-radius:10px;padding:2.5px;
+    font-size:11.5px;font-weight:600;color:#cfcfda;text-align:center;
+  }
+  .seg span{position:relative;z-index:2;padding:6px 0;}
+  .seg-pill{
+    position:absolute;z-index:1;top:2.5px;bottom:2.5px;left:2.5px;width:calc(33.33% - 2px);
+    border-radius:8px;background:rgba(255,255,255,.92);
+    box-shadow:0 2px 8px rgba(0,0,0,.35);
+  }
+  .seg span.on{color:#0c0c10;}
+
+  /* ---- 4. dynamic island ---- */
+  .ud4{justify-content:flex-start;padding-top:34px;}
+  /* lock fillers: bahut subtle — bas ehsaas ho, dhyan na khinche */
+  .lock-ui{width:min(270px,84%);display:flex;flex-direction:column;align-items:center;margin-top:4px;opacity:.5;}
+  .lock-date{font-size:10px;color:#6a6a76;font-weight:500;margin-top:8px;}
+  .lock-clock{font-size:34px;font-weight:200;letter-spacing:-.02em;color:#8e8e9c;line-height:1.05;font-variant-numeric:tabular-nums;}
+  .lock-notif{
+    width:100%;display:flex;align-items:center;gap:10px;
+    background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.035);
+    border-radius:14px;padding:9px 12px;margin-top:9px;
+  }
+  .ln-ico{
+    width:22px;height:22px;border-radius:7px;display:grid;place-items:center;
+    font-size:10px;font-weight:800;color:#0b0b10;flex-shrink:0;opacity:.55;
+  }
+  .ln-lines{flex:1;display:flex;flex-direction:column;gap:5px;}
+  .ln-lines i{height:5px;border-radius:4px;background:rgba(255,255,255,.07);display:block;}
+  .home-bar{width:80px;height:3.5px;border-radius:4px;background:rgba(255,255,255,.12);margin-top:12px;}
+  .phone-top{position:relative;width:min(280px,86%);display:flex;justify-content:center;}
+  .phone-time{position:absolute;left:14px;top:8px;font-size:13px;font-weight:700;color:#e9e9f0;}
+  .island{
+    width:118px;height:34px;border-radius:22px;background:#000;
+    border:1px solid rgba(255,255,255,.07);
+    overflow:hidden;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 14px 34px rgba(0,0,0,.5);
+    will-change:width,height;
+  }
+  .isl-content{
+    display:flex;align-items:center;gap:10px;padding:0 14px;width:250px;
+    opacity:0;
+  }
+  .isl-ico{
+    width:30px;height:30px;border-radius:50%;background:#39d97e;color:#04140b;
+    display:grid;place-items:center;font-weight:800;font-size:14px;flex-shrink:0;
+  }
+  .isl-txt{flex:1;line-height:1.25;min-width:0;}
+  .isl-txt b{display:block;font-size:12px;color:#fff;white-space:nowrap;}
+  .isl-txt span{font-size:10.5px;color:#9a9aa8;white-space:nowrap;}
+  .isl-right{color:#39d97e;font-weight:800;font-size:12.5px;white-space:nowrap;}
+
+  /* ---- 5. stats cards deck ---- */
+  .stk-deck{
+    position:relative;width:min(258px,84%);height:196px;
+    margin-top:10px;
+  }
+  .stk{
+    position:absolute;inset:0;padding:18px;border-radius:20px;
+    background:#17171d;border:1px solid rgba(255,255,255,.09);
+    box-shadow:0 18px 40px rgba(0,0,0,.45);
+    display:flex;flex-direction:column;
+    will-change:transform,opacity;
+  }
+  .stk-center{align-items:center;text-align:center;}
+  .stk-label{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;}
+  .stk-val{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-top:5px;font-variant-numeric:tabular-nums;}
+  .stk-pill{
+    position:absolute;top:16px;right:16px;
+    font-size:10.5px;font-weight:700;
+    border:1px solid;padding:4px 9px;border-radius:999px;
+  }
+  .stk-chart{width:100%;height:58px;margin-top:auto;display:block;}
+  .stk-bars{
+    display:flex;gap:8px;align-items:flex-end;height:62px;margin-top:auto;
+  }
+  .stk-bars i{
+    flex:1;border-radius:5px 5px 2px 2px;height:100%;opacity:.9;
+    transform:scaleY(.1);transform-origin:bottom;will-change:transform;
+  }
+  .stk-ring-wrap{position:relative;width:92px;height:92px;margin-top:8px;}
+  .stk-ring-wrap svg{width:100%;height:100%;display:block;}
+  .stk-ring-num{
+    position:absolute;inset:0;display:grid;place-items:center;
+    font-size:17px;font-weight:800;font-variant-numeric:tabular-nums;
+  }
+  .stk-sub{font-size:10.5px;color:var(--muted);margin-top:8px;}
+  @media(max-width:900px){
+    .w-lg,.w-tall{grid-column:span 6;grid-row:span 3;}
+    .w-sm{grid-column:span 6;grid-row:span 3;}
+  }
+  @media(max-width:600px){
+    .work-grid{grid-template-columns:1fr;grid-auto-rows:auto;}
+    .w-lg,.w-tall,.w-sm{grid-column:1;min-height:230px;}
+  }
+
+  /* ---------- AI CONCEPT SERIES ---------- */
+  .ai-sec{max-width:1060px;margin:0 auto;padding:44px 24px 30px;}
+  .ai-grid{display:grid;gap:14px;grid-template-columns:repeat(3,1fr);}
+  .acard{
+    position:relative;height:396px;border-radius:var(--radius);overflow:hidden;
+    border:1px solid rgba(0,0,0,.08);
+    opacity:0;transform:translateY(36px);
+    transition:box-shadow 1.4s ease;
+  }
+  /* har card ka apna soft tint — brand palette ke saath */
+  #aiGrid .acard:nth-child(1){background:linear-gradient(165deg,#fff8f3 0%,#f7eae0 100%);}
+  #aiGrid .acard:nth-child(2){background:linear-gradient(165deg,#f2fbf8 0%,#e2f2ea 100%);}
+  #aiGrid .acard:nth-child(3){background:linear-gradient(165deg,#f3f8ff 0%,#e4edf9 100%);}
+  /* light card pe meta top-left overlay, dark text */
+  .acard .wmeta{
+    position:absolute;top:0;left:0;right:0;bottom:auto;z-index:5;
+    padding:18px 20px;background:none;pointer-events:none;
+  }
+  .acard .wmeta h3{color:#15181e;font-size:16px;font-weight:700;letter-spacing:-.01em;margin-top:2px;}
+  .acard .wmeta .kicker{color:#6a7380;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;}
+  .acard .ui-demo{
+    justify-content:flex-end;
+    background:transparent;   /* meadow image dikhe, phone uske upar */
+  }
+  .phone{
+    position:relative;width:190px;height:436px;border-radius:32px;
+    background:#08080b;border:2.5px solid #2f2f37;
+    box-shadow:0 26px 54px rgba(0,0,0,.35), inset 0 0 0 1.5px rgba(255,255,255,.04);
+    display:flex;flex-direction:column;align-items:center;overflow:hidden;
+    margin-bottom:-124px;  /* phone neeche se crop — premium mockup feel */
+  }
+  .p-island{width:58px;height:16px;border-radius:10px;background:#000;border:1px solid rgba(255,255,255,.07);margin-top:12px;}
+  .p-time{position:absolute;top:16px;left:22px;font-size:10px;font-weight:700;color:#cfcfda;z-index:2;}
+
+  /* orb: sab kuch STRICTLY circle ke andar (overflow hidden) + glass rim */
+  .orb{
+    position:relative;width:112px;height:112px;border-radius:50%;margin-top:28px;
+    overflow:hidden;will-change:transform;
+    background:radial-gradient(circle at 50% 40%,#101016,#07070a 80%);
+    box-shadow:
+      inset 0 0 0 1.5px rgba(255,255,255,.16),
+      inset 0 6px 14px rgba(255,255,255,.07),
+      inset 0 -10px 22px rgba(0,0,0,.55),
+      0 0 26px var(--orbglow,rgba(255,255,255,.08));
+  }
+  /* liquid glass: patli crescent sheen top edge pe (dome nahi) */
+  .orb::before{
+    content:'';position:absolute;left:24%;top:5.5%;width:52%;height:15%;
+    border-radius:50%;z-index:6;pointer-events:none;
+    background:linear-gradient(180deg,rgba(255,255,255,.22),transparent);
+    filter:blur(2.5px);
+  }
+  .orb::after{
+    content:'';position:absolute;inset:1.5px;border-radius:50%;z-index:6;pointer-events:none;
+    box-shadow:
+      inset 0 -8px 16px rgba(255,255,255,.07),
+      inset -5px -2px 10px rgba(255,255,255,.04),
+      inset 0 2px 4px rgba(255,255,255,.12);
+  }
+  .orb-ember{--orbglow:rgba(217,119,87,.3);}
+  .orb-pulse{--orbglow:rgba(16,163,127,.3);}
+  .orb-sky{--orbglow:rgba(77,141,255,.32);}
+  /* har wave apni 3D layer me — perspective twist ke liye */
+  .orb-wave{perspective:260px;}
+  .cwave3d{
+    position:absolute;inset:0;mix-blend-mode:screen;
+    will-change:transform,opacity;transform-style:preserve-3d;
+  }
+  .cwave3d svg{position:absolute;inset:0;width:100%;height:100%;display:block;}
+  .c-flare-d{
+    position:absolute;left:50%;top:50%;width:24px;height:24px;margin:-12px 0 0 -12px;
+    border-radius:50%;will-change:transform,opacity;
+    background:radial-gradient(circle,#fff6ea 0%,rgba(255,225,190,.35) 55%,transparent 78%);
+  }
+
+  .ai-name{margin-top:22px;font-size:14px;font-weight:700;letter-spacing:-.01em;}
+  .ai-sub{margin-top:4px;font-size:10.5px;color:var(--muted);}
+  .ai-dots{display:flex;gap:5px;margin-top:16px;}
+  .ai-dots i{width:4.5px;height:4.5px;border-radius:50%;will-change:transform,opacity;}
+  @media(max-width:900px){
+    .ai-grid{grid-template-columns:1fr;}
+    .acard{height:430px;}
+  }
+
   /* ---------- GRID ---------- */
   .wrap{max-width:1060px;margin:0 auto;padding:14px 24px 60px;}
-  .bento{display:grid;gap:14px;grid-template-columns:repeat(12,1fr);grid-auto-rows:88px;}
+  .bento{display:grid;gap:14px;grid-template-columns:repeat(12,1fr);grid-auto-rows:88px;perspective:1200px;}
 
   .card{
     background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
     padding:26px;position:relative;overflow:hidden;
     display:flex;flex-direction:column;justify-content:space-between;
-    transition:background .3s,border-color .3s,transform .3s;
-    opacity:0;translate:0 20px;animation:rise .6s forwards;
+    transition:background .3s,border-color .3s;
+    opacity:0;transform:translateY(40px);
+    will-change:transform;
   }
-  .card:hover{background:var(--card-hover);border-color:#33333a;transform:translateY(-3px);}
-  @keyframes rise{to{opacity:1;translate:0 0;}}
-  .card:nth-child(1){animation-delay:.04s}.card:nth-child(2){animation-delay:.1s}
-  .card:nth-child(3){animation-delay:.16s}.card:nth-child(4){animation-delay:.22s}
-  .card:nth-child(5){animation-delay:.28s}.card:nth-child(6){animation-delay:.34s}
-  .card:nth-child(7){animation-delay:.40s}.card:nth-child(8){animation-delay:.46s}
+  .card:hover{background:var(--card-hover);border-color:#33333a;}
+  .card::before{
+    content:'';position:absolute;inset:0;border-radius:inherit;opacity:0;
+    background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(77,107,255,.10),transparent 45%);
+    transition:opacity .3s;pointer-events:none;
+  }
+  .card:hover::before{opacity:1;}
 
   .kicker{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600;}
   .card h2{font-size:21px;font-weight:700;letter-spacing:-.02em;margin-top:6px;}
@@ -85,21 +640,11 @@
   }
   .card:hover .arrow{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(-45deg);}
 
-  /* ---------- PROFILE ---------- */
-  .profile{grid-column:span 6;grid-row:span 3;flex-direction:row;align-items:center;gap:24px;justify-content:flex-start;}
-  .avatar{
-    width:150px;height:170px;border-radius:14px;flex-shrink:0;
-    background:linear-gradient(160deg,#4d6bff,#8b5cf6 55%,#d946ef);
-    display:grid;place-items:center;font-size:52px;font-weight:800;color:#fff;
-  }
-  .profile h1{font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1.12;margin-top:6px;}
-  .profile h1 .dot{color:var(--accent);}
-
-  /* ---------- SHOWREEL / WORK MEDIA ---------- */
-  .media-card{padding:0;cursor:pointer;}
+  /* ---------- MEDIA CARDS ---------- */
+  .media-card{padding:0;}
   .media-card .media{position:absolute;inset:0;}
-  .media-card video,.media-card .ph{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease,opacity .3s;}
-  .media-card:hover video,.media-card:hover .ph{transform:scale(1.04);}
+  .media-card video,.media-card .ph{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
+  .media-card:hover video,.media-card:hover .ph{transform:scale(1.05);}
   .media-card .meta{
     position:absolute;left:0;right:0;bottom:0;padding:18px 22px;
     background:linear-gradient(180deg,transparent,rgba(5,5,8,.85));
@@ -110,11 +655,8 @@
   .ph{display:grid;place-items:center;font-size:34px;color:rgba(255,255,255,.75);}
   .ph-reel{background:linear-gradient(150deg,#1b1b3a,#4d6bff);}
   .ph-1{background:linear-gradient(150deg,#2a123a,#8b5cf6);}
-  .ph-2{background:linear-gradient(150deg,#12303a,#22d3ee);}
-  .ph-3{background:linear-gradient(150deg,#3a1220,#f43f5e);}
-
-  .showreel{grid-column:span 3;grid-row:span 3;}
-  .work-a{grid-column:span 3;grid-row:span 3;}
+  .showreel{grid-column:span 6;grid-row:span 3;}
+  .work-a{grid-column:span 6;grid-row:span 3;}
 
   /* ---------- SERVICES ---------- */
   .services{grid-column:span 6;grid-row:span 2;}
@@ -124,25 +666,25 @@
     display:grid;place-items:center;font-size:19px;background:rgba(255,255,255,.03);
     transition:border-color .25s,transform .25s;
   }
-  .card:hover .icon{border-color:#3a3a44;}
-  .icon:hover{transform:translateY(-4px);border-color:var(--accent) !important;}
+  .icon:hover{transform:translateY(-4px);border-color:var(--accent);}
 
   /* ---------- SMALL CARDS ---------- */
   .tools{grid-column:span 3;grid-row:span 2;}
   .chip-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:4px;}
   .chip{
     border:1px solid var(--border);padding:6px 13px;border-radius:999px;
-    font-size:12px;font-weight:600;color:var(--muted);
+    font-size:12px;font-weight:600;color:var(--muted);transition:all .25s;
   }
+  .chip:hover{color:var(--ink);border-color:var(--accent);}
   .profiles{grid-column:span 3;grid-row:span 2;}
   .socials{display:flex;gap:10px;margin-top:4px;}
   .socials a{
     width:44px;height:44px;border-radius:12px;border:1px solid var(--border);
     display:grid;place-items:center;color:var(--muted);text-decoration:none;
     font-size:13px;font-weight:700;background:rgba(255,255,255,.03);
-    transition:all .25s;
+    transition:color .25s,border-color .25s,background .25s;
   }
-  .socials a:hover{color:#fff;border-color:var(--accent);background:var(--accent);transform:translateY(-3px);}
+  .socials a:hover{color:#fff;border-color:var(--accent);background:var(--accent);}
 
   /* ---------- STATS ---------- */
   .stats{grid-column:span 6;grid-row:span 2;flex-direction:row;align-items:center;gap:12px;}
@@ -150,15 +692,113 @@
     flex:1;text-align:center;border:1px solid var(--border);border-radius:14px;
     padding:20px 8px;background:rgba(255,255,255,.02);
   }
-  .stat b{font-size:27px;font-weight:800;letter-spacing:-.02em;display:block;}
+  .stat b{font-size:27px;font-weight:800;letter-spacing:-.02em;display:block;font-variant-numeric:tabular-nums;}
   .stat span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
 
-  /* ---------- CTA ---------- */
-  .cta-card{grid-column:span 6;grid-row:span 2;justify-content:center;cursor:pointer;text-decoration:none;}
+  /* ---------- CTA CARD ---------- */
+  .cta-card{grid-column:span 6;grid-row:span 2;justify-content:center;text-decoration:none;}
   .cta-card h2{font-size:30px;font-weight:800;letter-spacing:-.03em;}
   .cta-card h2 span{color:var(--accent);}
   .spark{position:absolute;top:22px;left:26px;color:var(--accent);font-size:18px;animation:pulse 2.2s infinite;}
   @keyframes pulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:1;transform:scale(1.25)}}
+
+  /* ---------- BEHANCE WORK GRID ---------- */
+  .bh-sec{max-width:1060px;margin:0 auto;padding:44px 24px 20px;}
+  /* rows 84px: 8-col lg aur 6-col half dono exact ~16:9 bante hain — no crop */
+  .bh-grid{display:grid;gap:14px;grid-template-columns:repeat(12,1fr);grid-auto-rows:84px;}
+  .bhcard{
+    position:relative;border-radius:var(--radius);overflow:hidden;
+    background:#0e0e12;border:1px solid var(--border);
+    box-shadow:0 14px 34px rgba(0,0,0,.35);
+    opacity:0;transform:translateY(36px);
+  }
+  .bhcard video{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .6s ease;
+  }
+  .bhcard:hover video{transform:scale(1.04);}
+  .bv-lg{grid-column:span 8;grid-row:span 4;}
+  .bv-tall{grid-column:span 4;grid-row:span 4;}
+  /* portrait video (Cred) — crop nahi, poora frame dikhe */
+  .bv-tall video{object-fit:contain;background:#0e0e12;}
+  .bv-md{grid-column:span 4;grid-row:span 4;}
+  .bv-half{grid-column:span 6;grid-row:span 3;}
+  .bv-wide{grid-column:span 12;grid-row:span 2;}
+  /* poora video dikhe — crop na ho (letterbox card ke bg me mil jata hai) */
+  .bv-fit video,.bv-md video{object-fit:contain !important;background:#0e0e12;}
+  .bh-more{
+    display:flex;align-items:center;justify-content:center;text-decoration:none;
+    background:var(--card);
+  }
+  @media(max-width:600px){.bv-wide{grid-column:1;min-height:120px;}}
+  .bh-more-inner{text-align:center;}
+  .bh-more-inner .kicker{display:block;}
+  .bh-more-inner b{
+    display:block;margin-top:8px;font-size:20px;font-weight:800;letter-spacing:-.02em;color:var(--ink);
+    transition:color .25s;
+  }
+  .bh-more:hover .bh-more-inner b{color:var(--accent);}
+  @media(max-width:900px){
+    .bv-lg,.bv-tall,.bv-md,.bv-half{grid-column:span 6;grid-row:span 3;}
+  }
+  @media(max-width:600px){
+    .bh-grid{grid-template-columns:1fr;grid-auto-rows:auto;}
+    .bv-lg,.bv-md,.bv-half{grid-column:1;min-height:220px;}
+    .bv-tall{grid-column:1;min-height:380px;}
+  }
+
+  /* ---------- AI FILMS GRID ---------- */
+  .ai-vid-sec{max-width:1060px;margin:0 auto;padding:20px 24px 60px;}
+  .aiv-grid{display:grid;gap:14px;grid-template-columns:repeat(12,1fr);grid-auto-rows:84px;}
+  .aivcard{
+    position:relative;border-radius:var(--radius);overflow:hidden;
+    background:#0e0e12;border:1.5px solid #ffffff;
+    box-shadow:0 14px 34px rgba(20,30,45,.14);
+    opacity:0;transform:translateY(36px);
+  }
+  .aivcard video{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .6s ease;
+  }
+  .aivcard:hover video{transform:scale(1.04);}
+  .av-lg{grid-column:span 8;grid-row:span 4;}     /* 16:9 */
+  .av-tall{grid-column:span 4;grid-row:span 8;}   /* portrait — dono lg ke barabar */
+  @media(max-width:900px){
+    .av-lg{grid-column:span 6;grid-row:span 3;}
+    .av-tall{grid-column:span 6;grid-row:span 6;}
+  }
+  @media(max-width:600px){
+    .aiv-grid{grid-template-columns:1fr;grid-auto-rows:auto;}
+    .av-lg{grid-column:1;min-height:220px;}
+    .av-tall{grid-column:1;min-height:420px;}
+  }
+
+  /* ---------- SECTION 4: LIGHT PREMIUM ---------- */
+  .sec-head-light{margin:26px 0 26px;}
+  .sec-head-light .kicker{color:#5b6470;}
+  .sec-head-light h2{
+    font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.03em;margin-top:8px;color:#12151b;
+  }
+  .sec-head-light h2 em{font-style:italic;font-family:Georgia,serif;font-weight:400;color:var(--accent);}
+  .bento .card{
+    background:#ffffff;border-color:rgba(10,15,25,.08);
+    box-shadow:0 10px 30px rgba(20,30,45,.06);
+  }
+  .bento .card:hover{background:#fdfdfe;border-color:rgba(10,15,25,.16);}
+  .bento .kicker{color:#6a7380;}
+  .bento .card h2{color:#15181e;}
+  .bento .card p{color:#5b6470;}
+  .bento .chip{border-color:rgba(10,15,25,.14);color:#4a525e;}
+  .bento .chip:hover{color:#12151b;border-color:var(--accent);}
+  .bento .icon{border-color:rgba(10,15,25,.12);background:rgba(10,15,25,.03);}
+  .bento .socials a{border-color:rgba(10,15,25,.12);background:rgba(10,15,25,.03);color:#4a525e;}
+  .bento .stat{border-color:rgba(10,15,25,.1);background:rgba(10,15,25,.02);}
+  .bento .stat b{color:#15181e;}
+  .bento .stat span{color:#7a828e;}
+  .bento .arrow{border-color:rgba(10,15,25,.14);color:#5b6470;background:rgba(10,15,25,.02);}
+  .bento .cta-card h2{color:#15181e;}
+  /* media cards (dark visuals) light card pe bhi theek — sirf border halka */
+  .bento .media-card{background:#0e0e12;}
 
   /* ---------- FOOTER ---------- */
   footer{
@@ -181,33 +821,74 @@
   /* ---------- RESPONSIVE ---------- */
   @media(max-width:900px){
     .bento{grid-template-columns:repeat(6,1fr);grid-auto-rows:84px;}
-    .profile{grid-column:span 6;}
-    .showreel,.work-a{grid-column:span 3;}
+    .showreel,.work-a{grid-column:span 6;}
     .services,.stats,.cta-card{grid-column:span 6;}
     .tools,.profiles{grid-column:span 3;}
     .nav-links{display:none;}
   }
   @media(max-width:600px){
+    /* hero: TV ko frame ke beech me lao (video ka right side dikhao) */
+    .hero-video{object-position:62% center;}
+    .hero-inner{padding-top:20vh;}
+    .hero-name{font-size:clamp(46px,13.5vw,60px);letter-spacing:-.035em;}
+    .hero-btns{gap:10px;margin-top:26px;}
+    .hero-btns .btn-primary,.hero-btns .btn-ghost{padding:11px 20px;font-size:13px;}
     .bento{grid-template-columns:1fr;grid-auto-rows:auto;}
     .card{grid-column:1 !important;grid-row:auto !important;min-height:150px;}
     .showreel,.work-a{min-height:260px;}
-    .profile{flex-direction:column;align-items:flex-start;}
     .stats{flex-direction:column;}
     .stat{width:100%;}
+    .hero-mini{gap:22px;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation-duration:.01ms !important;transition-duration:.01ms !important;}
   }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="logo">Anand <span>Raj</span></div>
-  <div class="nav-links">
-    <a href="#home">Home</a><a href="#works">Works</a><a href="#contact">Contact</a>
+<!-- PRELOADER -->
+<div class="preloader" id="preloader">
+  <div class="pre-name">
+    <span>Anand&nbsp;</span><span class="blue">Raj</span><span>&nbsp;Kushwaha</span>
   </div>
-  <a class="cta" href="mailto:anandraj@nimbuspost.com">Let's talk</a>
+  <div class="pre-bar"><i id="preBar"></i></div>
+  <div class="pre-count" id="preCount">0%</div>
+</div>
+
+<!-- CURSOR -->
+<div class="cursor-dot" id="cDot"></div>
+<div class="cursor-ring" id="cRing"><i class="ring-inner"></i></div>
+
+<nav id="nav">
+  <div class="logo">Anand Raj</div>
+  <div class="nav-links">
+    <a href="#home" data-hover>Home</a><a href="#works" data-hover>Works</a><a href="#contact" data-hover>Contact</a>
+  </div>
+  <a class="cta" href="mailto:anandrajkushwaha4@gmail.com" data-hover data-magnetic>Let's talk</a>
 </nav>
 
-<div class="marquee">
+<!-- ============ CINEMATIC VIDEO HERO ============ -->
+<section class="hero3d" id="home">
+  <video class="hero-video" id="heroVideo" src="hero.mp4" autoplay muted loop playsinline></video>
+  <div class="hero-shade"></div>
+  <div class="hero-grain"></div>
+
+  <div class="hero-inner hero-content">
+    <h1 class="hero-name">
+      <span class="line"><span>Making ideas</span></span>
+      <span class="line"><span><em>move.</em></span></span>
+    </h1>
+
+    <div class="hero-btns">
+      <a class="btn-primary" href="#works" data-hover data-magnetic>View my work ↓</a>
+    </div>
+  </div>
+
+  <div class="scroll-cue" id="scrollCue"><i></i>Scroll</div>
+</section>
+
+<div class="marquee" id="marquee">
   <div class="marquee-track">
     <span>Latest work and <b>featured</b> ✦</span><span>Motion graphics ✦</span>
     <span>2D animation ✦</span><span>Brand films ✦</span>
@@ -216,113 +897,931 @@
   </div>
 </div>
 
-<div class="wrap" id="home">
-  <div class="bento">
+<!-- ============ SECTION 2: SELECTED WORK (VIDEOS) ============ -->
+<section class="bh-sec" id="bhSec">
+  <div class="sec-head">
+    <div class="kicker">Selected Work</div>
+    <h2>Motion, <em>shipped.</em></h2>
+  </div>
+  <div class="bh-grid" id="bhGrid">
+    <div class="bhcard bv-lg" data-video="work-08.mp4" data-cursor="play" data-hover>
+      <video src="work-08.mp4" muted loop playsinline preload="metadata"></video>
+    </div>
+    <div class="bhcard bv-tall" data-video="work-03.mp4" data-cursor="play" data-hover>
+      <video src="work-03.mp4" muted loop playsinline preload="metadata"></video>
+    </div>
+    <div class="bhcard bv-lg" data-video="work-06.mp4" data-cursor="play" data-hover>
+      <video src="work-06.mp4" muted loop playsinline preload="metadata"></video>
+    </div>
+    <div class="bhcard bv-md" data-video="work-02.mp4" data-cursor="play" data-hover>
+      <video src="work-02.mp4" muted loop playsinline preload="metadata"></video>
+    </div>
+    <div class="bhcard bv-half" data-video="work-05.mp4" data-cursor="play" data-hover>
+      <video src="work-05.mp4" muted loop playsinline preload="metadata"></video>
+    </div>
+    <div class="bhcard bv-half" data-video="work-07.mp4" data-cursor="play" data-hover>
+      <video src="work-07.mp4" muted loop playsinline preload="metadata"></video>
+    </div>
+    <div class="bhcard bv-half bv-fit" data-video="work-04.mp4" data-cursor="play" data-hover>
+      <video src="work-04.mp4" muted loop playsinline preload="metadata"></video>
+    </div>
+    <div class="bhcard bv-half" data-video="work-01.mp4" data-cursor="play" data-hover>
+      <video src="work-01.mp4" muted loop playsinline preload="metadata"></video>
+    </div>
+  </div>
+</section>
 
-    <!-- PROFILE -->
-    <section class="card profile">
-      <div class="avatar">A</div>
-      <div>
-        <div class="kicker">A Motion Designer</div>
-        <h1>Anand Raj Kushwaha<span class="dot">.</span></h1>
-        <p>I craft motion graphics, 2D animation & brand films that make ideas move.</p>
+<!-- ============ SECTION 3: PRODUCT UI MOTION ============ -->
+<section class="works-sec" id="works">
+  <div class="sec-head">
+    <div class="kicker">Selected Work</div>
+    <h2>Product <em>UI Motion.</em></h2>
+  </div>
+  <div class="work-grid" id="workGrid">
+
+    <!-- 1. CRED-style payment -->
+    <div class="wcard w-lg" data-hover>
+      <div class="ui-demo ud1">
+        <div class="ud1-spot"></div>
+        <div class="cc-glow"></div>
+        <div class="ccard" id="ccard">
+          <div class="cc-shine"></div>
+          <div class="cc-top"><span class="cc-bank">NEO&nbsp;BANK</span><span class="cc-nfc"><i></i><i></i><i></i></span></div>
+          <div class="cc-chip"></div>
+          <div class="cc-num">••••&nbsp;&nbsp;••••&nbsp;&nbsp;••••&nbsp;&nbsp;4021</div>
+          <div class="cc-bot"><span>ANAND RAJ K</span><span class="cc-brand"><i></i><i></i></span></div>
+        </div>
+        <div class="pay-btn" id="payBtn">
+          <span class="pay-label">Pay ₹4,999</span>
+          <span class="pay-ring"></span>
+          <span class="pay-check">✓</span>
+        </div>
       </div>
-      <div class="arrow">→</div>
-    </section>
+      <div class="wmeta"><div class="kicker">Fintech · Interaction</div><h3>Card Payment Flow</h3></div>
+    </div>
 
-    <!-- SHOWREEL : set data-video="reel.mp4" & replace .ph with <video src="reel.mp4" autoplay muted loop playsinline></video> -->
-    <section class="card media-card showreel" data-video="">
-      <div class="media"><div class="ph ph-reel">▶</div></div>
-      <div class="meta"><div class="kicker">Watch</div><h2>Showreel '26</h2></div>
-    </section>
-
-    <!-- WORK 1 -->
-    <section class="card media-card work-a" id="works" data-video="">
-      <div class="media"><div class="ph ph-1">✦</div></div>
-      <div class="meta"><div class="kicker">Showcase</div><h2>Projects</h2></div>
-    </section>
-
-    <!-- SERVICES -->
-    <section class="card services">
-      <div>
-        <div class="kicker">Specialization</div>
-        <h2>Services Offering</h2>
+    <!-- 2. Apple-style music player -->
+    <div class="wcard w-tall" data-hover>
+      <div class="ui-demo ud2">
+        <div class="mp">
+          <div class="mp-art"><div class="mp-disc"><div class="mp-label"></div></div><div class="mp-hole"></div></div>
+          <div class="mp-name">Midnight Drive</div>
+          <div class="mp-artist">Frame & Flow</div>
+          <div class="mp-eq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="mp-prog"><i id="mpFill"></i><b id="mpKnob"></b></div>
+          <div class="mp-time"><span id="mpNow">0:00</span><span>3:52</span></div>
+          <div class="mp-ctrl"><span>⏮</span><span class="mp-play">▶</span><span>⏭</span></div>
+        </div>
       </div>
-      <div class="icon-row">
-        <div class="icon" title="Motion Graphics">🎞️</div>
-        <div class="icon" title="2D Animation">✏️</div>
-        <div class="icon" title="Logo Animation">◎</div>
-        <div class="icon" title="Video Editing">🎬</div>
-        <div class="icon" title="VFX">✨</div>
+      <div class="wmeta"><div class="kicker">Media · Player</div><h3>Now Playing</h3></div>
+    </div>
+
+    <!-- 3. iOS micro-interactions -->
+    <div class="wcard w-sm" data-hover>
+      <div class="ui-demo ud3">
+        <div class="ios-panel">
+          <div class="row"><span>Wi-Fi</span><div class="tgl" id="tg1"><i></i></div></div>
+          <div class="row"><span>Focus</span><div class="tgl" id="tg2"><i></i></div></div>
+          <div class="row slide-row">
+            <span>☀️</span>
+            <div class="sld"><i id="sldFill"></i><b id="sldKnob"></b></div>
+          </div>
+          <div class="seg" id="seg"><i class="seg-pill"></i><span>Day</span><span>Week</span><span>Month</span></div>
+        </div>
       </div>
-      <div class="arrow">→</div>
-    </section>
+      <div class="wmeta"><div class="kicker">iOS · Micro-interactions</div><h3>Controls</h3></div>
+    </div>
 
-    <!-- TOOLS -->
-    <section class="card tools">
-      <div class="kicker">Toolbox</div>
-      <div class="chip-row">
-        <span class="chip">After Effects</span><span class="chip">Premiere</span>
-        <span class="chip">Illustrator</span><span class="chip">Blender</span>
+    <!-- 4. Dynamic Island -->
+    <div class="wcard w-sm" data-hover>
+      <div class="ui-demo ud4">
+        <div class="phone-top">
+          <div class="island" id="island">
+            <div class="isl-content" id="islContent">
+              <div class="isl-ico" id="islIco">₹</div>
+              <div class="isl-txt"><b id="islTitle">Payment received</b><span id="islSub">₹12,500 · Nimbus</span></div>
+              <div class="isl-right" id="islRight">✓</div>
+            </div>
+          </div>
+          <div class="phone-time" id="phoneTime">9:41</div>
+        </div>
+        <!-- lock-screen fillers -->
+        <div class="lock-ui">
+          <div class="lock-date">Saturday, July 4</div>
+          <div class="lock-clock">9:41</div>
+          <div class="lock-notif">
+            <span class="ln-ico" style="background:#4d6bff">✦</span>
+            <span class="ln-lines"><i style="width:64%"></i><i style="width:42%"></i></span>
+          </div>
+          <div class="lock-notif">
+            <span class="ln-ico" style="background:#39d97e">₹</span>
+            <span class="ln-lines"><i style="width:56%"></i><i style="width:70%"></i></span>
+          </div>
+          <div class="home-bar"></div>
+        </div>
       </div>
-    </section>
+      <div class="wmeta"><div class="kicker">Apple · Live Activity</div><h3>Dynamic Island</h3></div>
+    </div>
 
-    <!-- PROFILES -->
-    <section class="card profiles">
-      <div class="kicker">Stay with me — Profiles</div>
-      <div class="socials">
-        <a href="#" title="Instagram">IG</a>
-        <a href="#" title="Behance">Be</a>
-        <a href="#" title="Dribbble">Dr</a>
-        <a href="#" title="LinkedIn">in</a>
+    <!-- 5. Stats cards carousel -->
+    <div class="wcard w-sm" data-hover>
+      <div class="ui-demo ud5">
+        <div class="stk-deck" id="stkDeck">
+
+            <div class="stk">
+              <div class="stk-label">Portfolio value</div>
+              <div class="stk-val">₹<span class="s-num">0</span></div>
+              <div class="stk-pill s-pill" style="color:#39d97e;border-color:rgba(57,217,126,.25);background:rgba(57,217,126,.1)">▲ 12.4%</div>
+              <svg class="stk-chart" viewBox="0 0 220 64" preserveAspectRatio="none">
+                <defs><linearGradient id="fg1" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#39d97e" stop-opacity=".26"/><stop offset="1" stop-color="#39d97e" stop-opacity="0"/>
+                </linearGradient></defs>
+                <path class="s-area" d="M0,52 L20,47 L40,50 L60,40 L80,43 L100,32 L120,36 L140,23 L160,27 L180,14 L200,18 L220,7 L220,64 L0,64 Z" fill="url(#fg1)"/>
+                <path class="s-line" d="M0,52 L20,47 L40,50 L60,40 L80,43 L100,32 L120,36 L140,23 L160,27 L180,14 L200,18 L220,7" fill="none" stroke="#39d97e" stroke-width="2.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+
+            <div class="stk">
+              <div class="stk-label">Followers</div>
+              <div class="stk-val"><span class="s-num">0</span>K</div>
+              <div class="stk-pill s-pill" style="color:#4dd6ff;border-color:rgba(77,214,255,.25);background:rgba(77,214,255,.1)">▲ 8.1%</div>
+              <div class="stk-bars">
+                <i style="background:#4dd6ff"></i><i style="background:#4dd6ff"></i><i style="background:#4dd6ff"></i>
+                <i style="background:#4dd6ff"></i><i style="background:#4dd6ff"></i><i style="background:#4dd6ff"></i><i style="background:#4dd6ff"></i>
+              </div>
+            </div>
+
+            <div class="stk stk-center">
+              <div class="stk-label">Orders today</div>
+              <div class="stk-ring-wrap">
+                <svg viewBox="0 0 80 80">
+                  <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="7"/>
+                  <circle class="s-ring" cx="40" cy="40" r="32" fill="none" stroke="#ffd34d" stroke-width="7"
+                    stroke-linecap="round" transform="rotate(-90 40 40)"/>
+                </svg>
+                <div class="stk-ring-num"><span class="s-num">0</span></div>
+              </div>
+              <div class="stk-sub">76% of daily goal</div>
+            </div>
+
+            <div class="stk stk-center">
+              <div class="stk-label">Activity</div>
+              <div class="stk-ring-wrap">
+                <svg viewBox="0 0 80 80">
+                  <circle cx="40" cy="40" r="33" fill="none" stroke="rgba(250,17,79,.18)" stroke-width="6"/>
+                  <circle class="s-r1" cx="40" cy="40" r="33" fill="none" stroke="#fa4d6e" stroke-width="6" stroke-linecap="round" transform="rotate(-90 40 40)"/>
+                  <circle cx="40" cy="40" r="24" fill="none" stroke="rgba(146,232,42,.16)" stroke-width="6"/>
+                  <circle class="s-r2" cx="40" cy="40" r="24" fill="none" stroke="#92e82a" stroke-width="6" stroke-linecap="round" transform="rotate(-90 40 40)"/>
+                  <circle cx="40" cy="40" r="15" fill="none" stroke="rgba(0,229,255,.16)" stroke-width="6"/>
+                  <circle class="s-r3" cx="40" cy="40" r="15" fill="none" stroke="#00e5ff" stroke-width="6" stroke-linecap="round" transform="rotate(-90 40 40)"/>
+                </svg>
+              </div>
+              <div class="stk-sub">Move · Exercise · Stand</div>
+            </div>
+
+            <div class="stk">
+              <div class="stk-label">Revenue · July</div>
+              <div class="stk-val">₹<span class="s-num">0</span>L</div>
+              <div class="stk-pill s-pill" style="color:#c9b8ff;border-color:rgba(177,140,255,.25);background:rgba(177,140,255,.1)">▲ 21%</div>
+              <svg class="stk-chart" viewBox="0 0 220 64" preserveAspectRatio="none">
+                <defs><linearGradient id="fg2" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#b18cff" stop-opacity=".26"/><stop offset="1" stop-color="#b18cff" stop-opacity="0"/>
+                </linearGradient></defs>
+                <path class="s-area" d="M0,55 L30,44 L60,48 L90,30 L120,35 L150,18 L180,24 L220,6 L220,64 L0,64 Z" fill="url(#fg2)"/>
+                <path class="s-line" d="M0,55 L30,44 L60,48 L90,30 L120,35 L150,18 L180,24 L220,6" fill="none" stroke="#b18cff" stroke-width="2.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+
+        </div>
       </div>
-    </section>
-
-    <!-- STATS -->
-    <section class="card stats">
-      <div class="stat"><b>05</b><span>Years Experience</span></div>
-      <div class="stat"><b>+40</b><span>Clients Worldwide</span></div>
-      <div class="stat"><b>+120</b><span>Total Projects</span></div>
-    </section>
-
-    <!-- CTA -->
-    <a class="card cta-card" id="contact" href="mailto:anandraj@nimbuspost.com">
-      <div class="spark">✦</div>
-      <h2>Let's<br>work <span>together.</span></h2>
-      <div class="arrow">→</div>
-    </a>
+      <div class="wmeta"><div class="kicker">Dashboard · Live Data</div><h3>Stats Cards</h3></div>
+    </div>
 
   </div>
-</div>
+</section>
 
-<footer>
-  <div class="logo">Anand <span style="color:var(--accent)">Raj</span></div>
+<!-- ============ SECTION 3: AI CONCEPT SERIES ============ -->
+<section class="ai-sec" id="aiSec">
+  <div class="sec-head">
+    <div class="kicker">Concept Series</div>
+    <h2>Voice AI <em>concepts.</em></h2>
+  </div>
+  <div class="ai-grid" id="aiGrid">
+
+    <!-- CLAUDE -->
+    <div class="acard">
+      <div class="ui-demo">
+        <div class="phone">
+          <span class="p-time">9:41</span>
+          <div class="p-island"></div>
+          <div class="orb orb-wave orb-ember">
+            <div class="cwave3d cwA">
+              <svg viewBox="0 0 120 120">
+                <defs><linearGradient id="clg1" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#d97757" stop-opacity="0"/>
+                  <stop offset=".45" stop-color="#ff9d6e" stop-opacity=".9"/>
+                  <stop offset=".6" stop-color="#ffd9a0" stop-opacity=".95"/>
+                  <stop offset="1" stop-color="#ffb27a" stop-opacity="0"/>
+                </linearGradient></defs>
+                <path d="M8,62 C30,36 54,46 80,52 C96,56 108,60 112,63 C94,68 68,86 46,78 C28,72 12,68 8,62 Z" fill="url(#clg1)"/>
+              </svg>
+            </div>
+            <div class="cwave3d cwB">
+              <svg viewBox="0 0 120 120">
+                <defs><linearGradient id="clg2" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#ffb27a" stop-opacity="0"/>
+                  <stop offset=".5" stop-color="#fff3e4" stop-opacity=".85"/>
+                  <stop offset="1" stop-color="#e8825a" stop-opacity="0"/>
+                </linearGradient></defs>
+                <path d="M10,58 C36,44 58,70 82,60 C96,54 106,56 111,60 C90,74 64,64 42,72 C26,77 14,66 10,58 Z" fill="url(#clg2)" opacity=".85"/>
+              </svg>
+            </div>
+            <div class="cwave3d cwC">
+              <svg viewBox="0 0 120 120">
+                <defs><linearGradient id="clg3" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#c96146" stop-opacity="0"/>
+                  <stop offset=".5" stop-color="#e8825a" stop-opacity=".85"/>
+                  <stop offset="1" stop-color="#ffd9a0" stop-opacity="0"/>
+                </linearGradient></defs>
+                <path d="M9,64 C32,52 52,78 78,66 C94,58 105,62 111,64 C92,78 66,92 44,82 C27,74 13,72 9,64 Z" fill="url(#clg3)" opacity=".8"/>
+              </svg>
+            </div>
+            <!-- follower waves — leaders ke peeche chalti hain -->
+            <div class="cwave3d cwD">
+              <svg viewBox="0 0 120 120">
+                <path d="M8,62 C30,36 54,46 80,52 C96,56 108,60 112,63 C94,68 68,86 46,78 C28,72 12,68 8,62 Z" fill="url(#clg2)" opacity=".55"/>
+              </svg>
+            </div>
+            <div class="cwave3d cwE">
+              <svg viewBox="0 0 120 120">
+                <path d="M10,58 C36,44 58,70 82,60 C96,54 106,56 111,60 C90,74 64,64 42,72 C26,77 14,66 10,58 Z" fill="url(#clg3)" opacity=".5"/>
+              </svg>
+            </div>
+            <div class="cwave3d cwF">
+              <svg viewBox="0 0 120 120">
+                <path d="M9,64 C32,52 52,78 78,66 C94,58 105,62 111,64 C92,78 66,92 44,82 C27,74 13,72 9,64 Z" fill="url(#clg1)" opacity=".55"/>
+              </svg>
+            </div>
+            <b class="c-flare-d"></b>
+          </div>
+          <div class="ai-name" style="color:#ffcdb0">Hi, I'm listening.</div>
+          <div class="ai-sub">Warm by design</div>
+          <div class="ai-dots"><i style="background:#e8825a"></i><i style="background:#e8825a"></i><i style="background:#e8825a"></i></div>
+        </div>
+      </div>
+      <div class="wmeta"><div class="kicker">Voice AI · Concept</div><h3>Ember</h3></div>
+    </div>
+
+    <!-- CHATGPT -->
+    <div class="acard">
+      <div class="ui-demo">
+        <div class="phone">
+          <span class="p-time">9:41</span>
+          <div class="p-island"></div>
+          <div class="orb orb-wave orb-pulse">
+            <div class="cwave3d cwA">
+              <svg viewBox="0 0 120 120">
+                <defs><linearGradient id="pg1" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#0d8a6a" stop-opacity="0"/>
+                  <stop offset=".45" stop-color="#35c39f" stop-opacity=".9"/>
+                  <stop offset=".6" stop-color="#bffbe8" stop-opacity=".95"/>
+                  <stop offset="1" stop-color="#5fd9b8" stop-opacity="0"/>
+                </linearGradient></defs>
+                <path d="M8,62 C30,36 54,46 80,52 C96,56 108,60 112,63 C94,68 68,86 46,78 C28,72 12,68 8,62 Z" fill="url(#pg1)"/>
+              </svg>
+            </div>
+            <div class="cwave3d cwB">
+              <svg viewBox="0 0 120 120">
+                <defs><linearGradient id="pg2" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#5fd9b8" stop-opacity="0"/>
+                  <stop offset=".5" stop-color="#eafff8" stop-opacity=".9"/>
+                  <stop offset="1" stop-color="#10a37f" stop-opacity="0"/>
+                </linearGradient></defs>
+                <path d="M10,58 C36,44 58,70 82,60 C96,54 106,56 111,60 C90,74 64,64 42,72 C26,77 14,66 10,58 Z" fill="url(#pg2)" opacity=".85"/>
+              </svg>
+            </div>
+            <div class="cwave3d cwC">
+              <svg viewBox="0 0 120 120">
+                <defs><linearGradient id="pg3" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#0a6e55" stop-opacity="0"/>
+                  <stop offset=".5" stop-color="#1fc39a" stop-opacity=".85"/>
+                  <stop offset="1" stop-color="#bffbe8" stop-opacity="0"/>
+                </linearGradient></defs>
+                <path d="M9,64 C32,52 52,78 78,66 C94,58 105,62 111,64 C92,78 66,92 44,82 C27,74 13,72 9,64 Z" fill="url(#pg3)" opacity=".8"/>
+              </svg>
+            </div>
+            <div class="cwave3d cwD"><svg viewBox="0 0 120 120"><path d="M8,62 C30,36 54,46 80,52 C96,56 108,60 112,63 C94,68 68,86 46,78 C28,72 12,68 8,62 Z" fill="url(#pg2)" opacity=".55"/></svg></div>
+            <div class="cwave3d cwE"><svg viewBox="0 0 120 120"><path d="M10,58 C36,44 58,70 82,60 C96,54 106,56 111,60 C90,74 64,64 42,72 C26,77 14,66 10,58 Z" fill="url(#pg3)" opacity=".5"/></svg></div>
+            <div class="cwave3d cwF"><svg viewBox="0 0 120 120"><path d="M9,64 C32,52 52,78 78,66 C94,58 105,62 111,64 C92,78 66,92 44,82 C27,74 13,72 9,64 Z" fill="url(#pg1)" opacity=".55"/></svg></div>
+            <b class="c-flare-d" style="background:radial-gradient(circle,#eafff8 0%,rgba(160,255,220,.35) 55%,transparent 78%)"></b>
+          </div>
+          <div class="ai-name" style="color:#9fe8d4">How can I help?</div>
+          <div class="ai-sub">Fast, clear thinking</div>
+          <div class="ai-dots"><i style="background:#10a37f"></i><i style="background:#10a37f"></i><i style="background:#10a37f"></i></div>
+        </div>
+      </div>
+      <div class="wmeta"><div class="kicker">Voice AI · Concept</div><h3>Pulse</h3></div>
+    </div>
+
+    <!-- NIMBUS -->
+    <div class="acard">
+      <div class="ui-demo">
+        <div class="phone">
+          <span class="p-time">9:41</span>
+          <div class="p-island"></div>
+          <div class="orb orb-wave orb-sky">
+            <div class="cwave3d cwA">
+              <svg viewBox="0 0 120 120">
+                <defs><linearGradient id="sg1" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#2b56c4" stop-opacity="0"/>
+                  <stop offset=".45" stop-color="#4d8dff" stop-opacity=".9"/>
+                  <stop offset=".6" stop-color="#cfe6ff" stop-opacity=".95"/>
+                  <stop offset="1" stop-color="#7cc4ff" stop-opacity="0"/>
+                </linearGradient></defs>
+                <path d="M8,62 C30,36 54,46 80,52 C96,56 108,60 112,63 C94,68 68,86 46,78 C28,72 12,68 8,62 Z" fill="url(#sg1)"/>
+              </svg>
+            </div>
+            <div class="cwave3d cwB">
+              <svg viewBox="0 0 120 120">
+                <defs><linearGradient id="sg2" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#7cc4ff" stop-opacity="0"/>
+                  <stop offset=".5" stop-color="#eef6ff" stop-opacity=".9"/>
+                  <stop offset="1" stop-color="#4d6bff" stop-opacity="0"/>
+                </linearGradient></defs>
+                <path d="M10,58 C36,44 58,70 82,60 C96,54 106,56 111,60 C90,74 64,64 42,72 C26,77 14,66 10,58 Z" fill="url(#sg2)" opacity=".85"/>
+              </svg>
+            </div>
+            <div class="cwave3d cwC">
+              <svg viewBox="0 0 120 120">
+                <defs><linearGradient id="sg3" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#6d4fd9" stop-opacity="0"/>
+                  <stop offset=".5" stop-color="#a78bfa" stop-opacity=".85"/>
+                  <stop offset="1" stop-color="#cfe6ff" stop-opacity="0"/>
+                </linearGradient></defs>
+                <path d="M9,64 C32,52 52,78 78,66 C94,58 105,62 111,64 C92,78 66,92 44,82 C27,74 13,72 9,64 Z" fill="url(#sg3)" opacity=".8"/>
+              </svg>
+            </div>
+            <div class="cwave3d cwD"><svg viewBox="0 0 120 120"><path d="M8,62 C30,36 54,46 80,52 C96,56 108,60 112,63 C94,68 68,86 46,78 C28,72 12,68 8,62 Z" fill="url(#sg2)" opacity=".55"/></svg></div>
+            <div class="cwave3d cwE"><svg viewBox="0 0 120 120"><path d="M10,58 C36,44 58,70 82,60 C96,54 106,56 111,60 C90,74 64,64 42,72 C26,77 14,66 10,58 Z" fill="url(#sg3)" opacity=".5"/></svg></div>
+            <div class="cwave3d cwF"><svg viewBox="0 0 120 120"><path d="M9,64 C32,52 52,78 78,66 C94,58 105,62 111,64 C92,78 66,92 44,82 C27,74 13,72 9,64 Z" fill="url(#sg1)" opacity=".55"/></svg></div>
+            <b class="c-flare-d" style="background:radial-gradient(circle,#eef6ff 0%,rgba(180,215,255,.35) 55%,transparent 78%)"></b>
+          </div>
+          <div class="ai-name" style="color:#a8d3ff">Always a step ahead.</div>
+          <div class="ai-sub">Plans before you ask</div>
+          <div class="ai-dots"><i style="background:#4d8dff"></i><i style="background:#4d8dff"></i><i style="background:#4d8dff"></i></div>
+        </div>
+      </div>
+      <div class="wmeta"><div class="kicker">Voice AI · Concept</div><h3>Sky</h3></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ SECTION 5: AI VIDEOS ============ -->
+<section class="ai-vid-sec" id="aiVidSec">
+  <div class="sec-head sec-head-light">
+    <div class="kicker">Generative</div>
+    <h2>AI <em>films.</em></h2>
+  </div>
+  <div class="aiv-grid" id="aivGrid">
+    <div class="aivcard av-lg" data-video="ai-brand.mp4" data-cursor="play" data-hover>
+      <video src="ai-brand.mp4" muted loop playsinline preload="metadata"></video>
+    </div>
+    <div class="aivcard av-tall" data-video="ai-sports.mp4" data-cursor="play" data-hover>
+      <video src="ai-sports.mp4" muted loop playsinline preload="metadata"></video>
+    </div>
+    <div class="aivcard av-lg" data-video="ai-fathers.mp4" data-cursor="play" data-hover>
+      <video src="ai-fathers.mp4" muted loop playsinline preload="metadata"></video>
+    </div>
+  </div>
+</section>
+
+
+<footer id="contact">
+  <div class="logo">Anand Raj</div>
   <div class="foot-links">
-    <a href="#home">Home</a><a href="#works">Works</a><a href="#contact">Contact</a>
+    <a href="#home" data-hover>Home</a><a href="#works" data-hover>Works</a><a href="#contact" data-hover>Contact</a>
   </div>
-  <div class="copy">© 2026 All rights reserved · <a href="mailto:anandraj@nimbuspost.com">anandraj@nimbuspost.com</a></div>
+  <div class="copy">© 2026 All rights reserved · <a href="mailto:anandrajkushwaha4@gmail.com" data-hover>anandrajkushwaha4@gmail.com</a></div>
 </footer>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
-  <button class="close" onclick="closeLB()">×</button>
+  <button class="close" onclick="closeLB()" data-hover>×</button>
   <video id="lbVideo" controls></video>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script>
-  const lb = document.getElementById('lightbox');
-  const lbVideo = document.getElementById('lbVideo');
-  document.querySelectorAll('[data-video]').forEach(card=>{
-    card.addEventListener('click',()=>{
-      const src = card.dataset.video;
-      if(!src) return;
-      lbVideo.src = src;
-      lb.classList.add('open');
-      lbVideo.play();
+gsap.registerPlugin(ScrollTrigger);
+
+/* ================= HERO VIDEO — slow zoom + mouse parallax ================= */
+(function(){
+  const v = document.getElementById('heroVideo');
+  if(!v) return;
+
+  /* gentle continuous Ken Burns breathing zoom */
+  gsap.set(v,{scale:1.04});
+  gsap.to(v,{scale:1.09,duration:10,ease:'sine.inOut',repeat:-1,yoyo:true});
+
+  /* subtle parallax toward mouse */
+  const hero = document.querySelector('.hero3d');
+  hero.addEventListener('mousemove',e=>{
+    const r = hero.getBoundingClientRect();
+    const nx = (e.clientX-r.left)/r.width - .5;
+    const ny = (e.clientY-r.top)/r.height - .5;
+    gsap.to(v,{x:nx*-24,y:ny*-16,duration:1.2,ease:'power2.out',overwrite:'auto'});
+  });
+
+  /* video ko scroll pe halka piche dhakelna (depth) */
+  gsap.to(v,{yPercent:12,ease:'none',
+    scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:true}
+  });
+})();
+
+/* ================= PRELOADER ================= */
+const preloader = document.getElementById('preloader');
+const preBar = document.getElementById('preBar');
+const preCount = document.getElementById('preCount');
+
+gsap.to('.pre-name span',{y:0,duration:.9,stagger:.08,ease:'power4.out',delay:.15});
+
+let prog2 = {v:0};
+gsap.to(prog2,{
+  v:100,duration:1.8,ease:'power2.inOut',delay:.3,
+  onUpdate(){
+    preBar.style.width = prog2.v+'%';
+    preCount.textContent = Math.round(prog2.v)+'%';
+  },
+  onComplete: exitPreloader
+});
+
+function exitPreloader(){
+  const tl = gsap.timeline();
+  tl.to('.pre-name span',{y:'-110%',duration:.5,stagger:.05,ease:'power3.in'})
+    .to('.pre-bar,.pre-count',{opacity:0,duration:.3},'<')
+    .to(preloader,{yPercent:-100,duration:.7,ease:'power4.inOut'})
+    .set(preloader,{display:'none'})
+    .add(enterSite,'-=0.4');
+}
+
+/* ================= ENTRANCE ================= */
+function enterSite(){
+  const tl = gsap.timeline({defaults:{ease:'power3.out'}});
+  tl.to('#nav',{opacity:1,y:0,duration:.6,startAt:{y:-16}})
+    .from('.hero-name .line span',{y:'112%',duration:.95,stagger:.12,ease:'power4.out'},'-=.25')
+    .from('.hero-btns a',{opacity:0,y:18,duration:.5,stagger:.09},'-=.45')
+    .from('#scrollCue',{opacity:0,duration:.8},'-=.3')
+    .to('#marquee',{opacity:1,duration:.6},'-=.6');
+}
+
+/* ================= UI MOTION DEMOS ================= */
+
+/* --- 1. CRED payment flow --- */
+(function(){
+  const card=document.getElementById('ccard'); if(!card) return;
+
+  /* card float + tilt */
+  gsap.to(card,{y:-9,rotateX:4,rotateY:-5,duration:2.8,ease:'sine.inOut',repeat:-1,yoyo:true,transformPerspective:700});
+  /* shine sweep */
+  gsap.to('.cc-shine',{x:'520%',duration:1.6,ease:'power2.inOut',repeat:-1,repeatDelay:2.4});
+
+  /* pay button loop: pay -> spinner -> success -> reset */
+  const tl=gsap.timeline({repeat:-1,repeatDelay:1.6,defaults:{ease:'power3.inOut'}});
+  tl.to('#payBtn',{scale:.94,duration:.14,delay:1.2})
+    .to('#payBtn',{scale:1,duration:.18})
+    .to('#payBtn',{minWidth:48,width:48,duration:.4},'+=.1')
+    .to('.pay-label',{opacity:0,duration:.18},'<')
+    .to('.pay-ring',{opacity:1,duration:.2},'<+.15')
+    .to('.pay-ring',{rotation:720,duration:1.1,ease:'power1.inOut'},'<')
+    .to('.pay-ring',{opacity:0,duration:.15})
+    .to('#payBtn',{backgroundColor:'#39d97e',duration:.25},'<')
+    .to('.pay-check',{opacity:1,scale:1,duration:.35,ease:'back.out(2.4)'},'<')
+    .to('.cc-glow',{opacity:1,duration:.4},'<')
+    .to({},{duration:1.1})
+    .to('.pay-check',{opacity:0,scale:.4,duration:.2})
+    .to('#payBtn',{minWidth:170,width:170,backgroundColor:'#f2f2f5',duration:.45})
+    .to('.pay-label',{opacity:1,duration:.25},'-=.2')
+    .to('.cc-glow',{opacity:0,duration:.5},'<');
+})();
+
+/* --- 2. music player --- */
+(function(){
+  const fill=document.getElementById('mpFill'); if(!fill) return;
+  const knob=document.getElementById('mpKnob'), now=document.getElementById('mpNow');
+  /* eq bars dance (scaleY = GPU) */
+  document.querySelectorAll('.mp-eq i').forEach((bar,i)=>{
+    gsap.to(bar,{scaleY:'random(0.25,1)',duration:'random(.3,.55)',ease:'sine.inOut',repeat:-1,yoyo:true,delay:i*.06});
+  });
+  /* vinyl spin — sheen + label colors se rotation dikhti hai */
+  gsap.to('.mp-disc',{rotation:360,duration:5,ease:'none',repeat:-1});
+  /* progress loop (transforms only) */
+  const prog=fill.parentElement;
+  let barW=prog.offsetWidth;
+  addEventListener('resize',()=>barW=prog.offsetWidth);
+  const o={p:0};
+  let lastSec=-1;
+  gsap.to(o,{p:1,duration:24,ease:'none',repeat:-1,onUpdate(){
+    gsap.set(fill,{scaleX:o.p});
+    gsap.set(knob,{x:o.p*barW});
+    const secs=Math.floor(232*o.p);
+    if(secs!==lastSec){lastSec=secs;
+      now.textContent=Math.floor(secs/60)+':'+String(secs%60).padStart(2,'0');
+    }
+  }});
+  /* play button pulse */
+  gsap.to('.mp-play',{scale:1.08,duration:1.2,ease:'sine.inOut',repeat:-1,yoyo:true});
+})();
+
+/* --- 3. iOS controls --- */
+(function(){
+  const tg1=document.getElementById('tg1'); if(!tg1) return;
+  const tg2=document.getElementById('tg2');
+  const sldFill=document.getElementById('sldFill'), sldKnob=document.getElementById('sldKnob');
+  const seg=document.getElementById('seg');
+  const pill=seg.querySelector('.seg-pill');
+  const labels=seg.querySelectorAll('span');
+
+  /* toggles ka sequence */
+  gsap.timeline({repeat:-1})
+    .call(()=>tg1.classList.add('on'),null,1.0)
+    .call(()=>tg2.classList.add('on'),null,1.9)
+    .call(()=>tg1.classList.remove('on'),null,3.4)
+    .call(()=>tg2.classList.remove('on'),null,4.2)
+    .to({},{duration:5.4});
+
+  /* slider glide (transforms only) */
+  const sld=sldFill.parentElement;
+  let sldW=sld.offsetWidth;
+  addEventListener('resize',()=>sldW=sld.offsetWidth);
+  const s={v:.3};
+  gsap.timeline({repeat:-1,repeatDelay:.8,defaults:{ease:'power2.inOut'}})
+    .to(s,{v:.86,duration:1.4,onUpdate:up})
+    .to(s,{v:.18,duration:1.6,delay:.7,onUpdate:up})
+    .to(s,{v:.55,duration:1.1,delay:.5,onUpdate:up});
+  function up(){
+    gsap.set(sldFill,{scaleX:s.v});
+    gsap.set(sldKnob,{x:s.v*sldW});
+  }
+
+  /* segmented control switch */
+  let idx=0;
+  labels[0].classList.add('on');
+  setInterval(()=>{
+    idx=(idx+1)%3;
+    gsap.to(pill,{x:idx*(pill.offsetWidth+2.5),duration:.45,ease:'back.out(1.6)'});
+    labels.forEach((l,i)=>l.classList.toggle('on',i===idx));
+  },2200);
+})();
+
+/* --- 4. dynamic island: 5 rotating live activities --- */
+(function(){
+  const isl=document.getElementById('island'); if(!isl) return;
+  const content=document.getElementById('islContent');
+  const ico=document.getElementById('islIco');
+  const ttl=document.getElementById('islTitle');
+  const sub=document.getElementById('islSub');
+  const right=document.getElementById('islRight');
+  const time=document.getElementById('phoneTime');
+
+  const statuses=[
+    {ico:'₹',  bg:'#39d97e', t:'Payment received', s:'₹12,500 · Nimbus',        r:'✓',      rc:'#39d97e'},
+    {ico:'♥',  bg:'#ff5c7a', t:'Workout complete', s:'320 kcal · 45 min',       r:'92 bpm', rc:'#ff5c7a'},
+    {ico:'🚕', bg:'#26262c', t:'Cab arriving',     s:'Sahil · White Swift',     r:'4 min',  rc:'#ffd34d'},
+    {ico:'🍜', bg:'#26262c', t:'Order on the way', s:'Biryani Bites · #2841',   r:'10 min', rc:'#ff9a3d'},
+    {ico:'♪',  bg:'#8b5cf6', t:'Now Playing',      s:'Midnight Drive · Frame&Flow', r:'▶', rc:'#c9b8ff'}
+  ];
+
+  let i=0;
+  function cycle(){
+    const st=statuses[i];
+    ico.textContent=st.ico; ico.style.background=st.bg;
+    ttl.textContent=st.t; sub.textContent=st.s;
+    right.textContent=st.r; right.style.color=st.rc;
+
+    gsap.timeline({onComplete(){ i=(i+1)%statuses.length; gsap.delayedCall(1.5,cycle); }})
+      .to(time,{opacity:0,duration:.25},0)
+      .to(isl,{width:250,height:64,borderRadius:32,duration:.55,ease:'back.out(1.2)'},0)
+      .to(content,{opacity:1,duration:.3},'-=.2')
+      .fromTo(ico,{scale:.4},{scale:1,duration:.35,ease:'back.out(2.5)'},'<')
+      .to({},{duration:2.2})
+      .to(content,{opacity:0,duration:.2})
+      .to(isl,{width:118,height:34,borderRadius:22,duration:.5,ease:'power4.inOut'})
+      .to(time,{opacity:1,duration:.25},'-=.25');
+  }
+  gsap.delayedCall(1.2,cycle);
+})();
+
+/* --- 5. stats cards deck (Apple Wallet style) --- */
+(function(){
+  const deck=document.getElementById('stkDeck'); if(!deck) return;
+  const slides=[...deck.children];
+
+  /* helpers */
+  function count(el,target,fmt,dur=1.4){
+    const o={v:0};
+    gsap.to(o,{v:target,duration:dur,ease:'power2.out',onUpdate(){el.textContent=fmt(o.v);}});
+  }
+  function drawLine(slide){
+    const line=slide.querySelector('.s-line'), area=slide.querySelector('.s-area');
+    const len=line.getTotalLength();
+    line.style.strokeDasharray=len;
+    gsap.fromTo(line,{strokeDashoffset:len},{strokeDashoffset:0,duration:1.6,ease:'power2.inOut'});
+    gsap.fromTo(area,{opacity:0},{opacity:1,duration:.9,delay:.6});
+  }
+  function pillPop(slide){
+    const p=slide.querySelector('.s-pill');
+    if(p) gsap.fromTo(p,{scale:.6,opacity:0},{scale:1,opacity:1,duration:.4,delay:.9,ease:'back.out(2)'});
+  }
+  function ring(el,frac,dur=1.5,delay=.2){
+    const len=2*Math.PI*el.r.baseVal.value;
+    el.style.strokeDasharray=len;
+    gsap.fromTo(el,{strokeDashoffset:len},{strokeDashoffset:len*(1-frac),duration:dur,delay,ease:'power3.inOut'});
+  }
+
+  /* har slide ki apni animation */
+  const anims=[
+    s=>{ count(s.querySelector('.s-num'),482350,v=>Math.round(v).toLocaleString('en-IN')); drawLine(s); pillPop(s); },
+    s=>{ count(s.querySelector('.s-num'),48.2,v=>v.toFixed(1)); pillPop(s);
+         gsap.fromTo(s.querySelectorAll('.stk-bars i'),{scaleY:.08},
+           {scaleY:i=>[.35,.5,.42,.66,.58,.82,1][i],duration:.9,stagger:.08,ease:'back.out(1.6)'}); },
+    s=>{ count(s.querySelector('.s-num'),1284,v=>Math.round(v).toLocaleString('en-IN')); ring(s.querySelector('.s-ring'),.76); },
+    s=>{ ring(s.querySelector('.s-r1'),.85,1.4,.1); ring(s.querySelector('.s-r2'),.62,1.4,.3); ring(s.querySelector('.s-r3'),.45,1.4,.5); },
+    s=>{ count(s.querySelector('.s-num'),8.4,v=>v.toFixed(1)); drawLine(s); pillPop(s); }
+  ];
+
+  /* deck order: order[0] = top card */
+  let order=[0,1,2,3,4];
+
+  /* cards solid rehte hain — depth ka dim brightness se (no see-through glitch) */
+  function posProps(pos){
+    return {
+      y:-pos*11, scale:1-pos*.055,
+      opacity:pos<3?1:0,
+      filter:'brightness('+(pos===0?1:pos===1?.5:pos===2?.32:.3)+')',
+      force3D:true
+    };
+  }
+  function applyStack(){
+    order.forEach((idx,pos)=>{
+      const el=slides[idx];
+      el.style.zIndex=slides.length-pos;
+      gsap.set(el,posProps(pos));
+    });
+  }
+
+  applyStack();
+  anims[0](slides[0]);
+
+  function next(){
+    const top=slides[order[0]];
+    /* top card slide out — solid hi rehta hai, sirf aakhir me fade */
+    gsap.to(top,{x:-170,rotation:-6,duration:.6,ease:'power2.in',force3D:true});
+    gsap.to(top,{opacity:0,duration:.18,delay:.42});
+    /* baaki cards promote */
+    order.slice(1).forEach((idx,i)=>{
+      gsap.to(slides[idx],{...posProps(i),duration:.7,ease:'power3.out',delay:.12});
+    });
+    gsap.delayedCall(.62,()=>{
+      order.push(order.shift());
+      /* sirf zIndex + purane top ko peeche rakho — promote tweens ko mat chhedo */
+      order.forEach((idx,pos)=>{ slides[idx].style.zIndex=slides.length-pos; });
+      gsap.set(top,{x:0,rotation:0,...posProps(slides.length-1)});
+      anims[order[0]](slides[order[0]]);
+      gsap.delayedCall(3,next);
+    });
+  }
+  gsap.delayedCall(3.2,next);
+})();
+
+/* reveal on scroll */
+gsap.to('.wcard',{
+  opacity:1,y:0,duration:.8,stagger:.09,ease:'power4.out',
+  scrollTrigger:{trigger:'#workGrid',start:'top 80%',once:true}
+});
+gsap.from('.works-sec .sec-head > *',{
+  opacity:0,y:24,duration:.7,stagger:.1,ease:'power3.out',
+  scrollTrigger:{trigger:'.works-sec',start:'top 82%',once:true}
+});
+
+/* ================= AI CONCEPT ORBS ================= */
+(function(){
+  if(!document.querySelector('.orb')) return;
+
+  /* --- Wave engine: same journey narrative, har orb ki apni DIRECTION ---
+     'up': neeche se upar (Ember) · 'right': left se right (Pulse) · 'down': upar se neeche (Sky) */
+  function initWaveOrb(rootSel,phase,mode){
+  const cl=document.querySelector(rootSel);
+  if(cl){
+    function addCycle(tl,el,mid,f,statY){
+      if(mode==='right'){
+        tl.set(el,{x:-76,y:statY,opacity:0,scaleY:.5,rotationY:-42,rotation:-4})
+          .to(el,{x:mid,opacity:.95,scaleY:1,rotationY:0,rotation:0,duration:1.35*f,ease:'power2.out'})
+          .to(el,{scaleY:1.32,x:mid+6,duration:1.05*f,ease:'sine.inOut'})
+          .to(el,{scaleY:1.04,x:mid+1,duration:1.05*f,ease:'sine.inOut'})
+          .to(el,{x:76,opacity:0,rotationY:32,scaleY:.55,rotation:4,duration:1.2*f,ease:'power2.in'},'+='+(.08*f));
+      }else{
+        const s=(mode==='down')?-1:1;
+        tl.set(el,{y:76*s,opacity:0,scaleY:.5,rotationX:42*s,rotation:4*s})
+          .to(el,{y:mid,opacity:.95,scaleY:1,rotationX:0,rotation:0,duration:1.35*f,ease:'power2.out'})
+          .to(el,{scaleY:1.32,y:mid-6*s,duration:1.05*f,ease:'sine.inOut'})
+          .to(el,{scaleY:1.04,y:mid-1*s,duration:1.05*f,ease:'sine.inOut'})
+          .to(el,{y:-76*s,opacity:0,rotationX:-32*s,scaleY:.55,rotation:-4*s,duration:1.2*f,ease:'power2.in'},'+='+(.08*f));
+      }
+    }
+    function waveJourney(sel,delay,mid,statY){
+      const el=cl.querySelector(sel);
+      gsap.set(el,{transformOrigin:'50% 50%'});
+      const tl=gsap.timeline({repeat:-1,delay});
+      addCycle(tl,el,mid,1,statY);    /* calm cycle */
+      addCycle(tl,el,mid,.5,statY);   /* energetic 2x cycle */
+    }
+    waveJourney('.cwA',phase+0,    -2,-12);  waveJourney('.cwD',phase+0.45,  7, -2);
+    waveJourney('.cwB',phase+2.37,-11,  6);  waveJourney('.cwE',phase+2.82, -3, 14);
+    waveJourney('.cwC',phase+4.73,  4, -7);  waveJourney('.cwF',phase+5.18, 12,  2);
+
+    /* poora orb saans leta hai */
+    gsap.to(cl,{scale:1.04,duration:3.2,ease:'sine.inOut',repeat:-1,yoyo:true,delay:phase*.3});
+    /* flare: dhadkan + halka tairna */
+    const fl=cl.querySelector('.c-flare-d');
+    gsap.to(fl,{scale:1.7,opacity:.6,duration:2.6,ease:'sine.inOut',repeat:-1,yoyo:true,delay:phase*.3});
+    gsap.to(fl,{x:5,y:-4,duration:3.8,ease:'sine.inOut',repeat:-1,yoyo:true,delay:phase*.2});
+  }}
+  /* teeno orbs — alag phase + alag direction */
+  initWaveOrb('.orb-ember',0,  'up');
+  initWaveOrb('.orb-pulse',1.1,'right');
+  initWaveOrb('.orb-sky',2.2,  'down');
+
+  /* listening dots */
+  document.querySelectorAll('.ai-dots').forEach(d=>{
+    gsap.to(d.querySelectorAll('i'),{
+      scale:1.9,opacity:.45,duration:.55,ease:'sine.inOut',
+      stagger:{each:.16,repeat:-1,yoyo:true}
     });
   });
-  function closeLB(){ lb.classList.remove('open'); lbVideo.pause(); lbVideo.src=''; }
-  lb.addEventListener('click',e=>{ if(e.target===lb) closeLB(); });
+
+  /* reveal on scroll */
+  gsap.to('.acard',{
+    opacity:1,y:0,duration:.85,stagger:.12,ease:'power4.out',
+    scrollTrigger:{trigger:'#aiGrid',start:'top 80%',once:true}
+  });
+  gsap.from('.ai-sec .sec-head > *',{
+    opacity:0,y:24,duration:.7,stagger:.1,ease:'power3.out',
+    scrollTrigger:{trigger:'.ai-sec',start:'top 82%',once:true}
+  });
+})();
+
+/* videos tabhi play hoti hain jab screen me aati hain — pehli baar shuru se */
+const vio=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    const v=e.target;
+    if(e.isIntersecting){
+      if(!v.dataset.started){ v.currentTime=0; v.dataset.started='1'; }
+      v.play().catch(()=>{});
+    } else { v.pause(); }
+  });
+},{threshold:.25});
+document.querySelectorAll('.bhcard video,.aivcard video').forEach(v=>vio.observe(v));
+
+/* AI films reveal */
+gsap.to('.aivcard',{
+  opacity:1,y:0,duration:.85,stagger:.12,ease:'power4.out',
+  scrollTrigger:{trigger:'#aivGrid',start:'top 82%',once:true}
+});
+gsap.from('.ai-vid-sec .sec-head > *',{
+  opacity:0,y:24,duration:.7,stagger:.1,ease:'power3.out',
+  scrollTrigger:{trigger:'.ai-vid-sec',start:'top 84%',once:true}
+});
+
+/* behance cards reveal */
+gsap.to('.bhcard',{
+  opacity:1,y:0,duration:.85,stagger:.12,ease:'power4.out',
+  scrollTrigger:{trigger:'#bhGrid',start:'top 82%',once:true}
+});
+gsap.from('.bh-sec .sec-head > *',{
+  opacity:0,y:24,duration:.7,stagger:.1,ease:'power3.out',
+  scrollTrigger:{trigger:'.bh-sec',start:'top 84%',once:true}
+});
+
+/* section 3 se aage light theme hi rehti hai; upar wapas jao to dark */
+ScrollTrigger.create({
+  trigger:'#aiSec', start:'top 62%',
+  onEnter:()=>document.body.classList.add('lightbg'),
+  onLeaveBack:()=>document.body.classList.remove('lightbg')
+});
+
+/* nav: hero ke upar transparent, scroll ke baad dark blur */
+ScrollTrigger.create({
+  trigger:'.hero3d', start:'bottom 90px',
+  onEnter:()=>document.getElementById('nav').classList.add('scrolled'),
+  onLeaveBack:()=>document.getElementById('nav').classList.remove('scrolled')
+});
+
+/* bento cards reveal on scroll */
+gsap.to('.card',{
+  opacity:1,y:0,duration:.85,stagger:.08,ease:'power4.out',
+  scrollTrigger:{trigger:'#bento',start:'top 78%',once:true,
+    onEnter:()=>countStats()
+  }
+});
+
+/* hero content drifts up + fades on scroll */
+gsap.to('.hero-content',{
+  yPercent:-24,opacity:0,ease:'none',
+  scrollTrigger:{trigger:'.hero3d',start:'top top',end:'bottom 40%',scrub:true}
+});
+gsap.to('#scrollCue',{
+  opacity:0,ease:'none',
+  scrollTrigger:{trigger:'.hero3d',start:'top top',end:'25% top',scrub:true}
+});
+
+/* stats count-up (bento) */
+let counted=false;
+function countStats(){
+  if(counted) return; counted=true;
+  document.querySelectorAll('.stats [data-count]').forEach(el=>{
+    const target = +el.dataset.count;
+    const prefix = el.dataset.prefix||'';
+    const pad = +el.dataset.pad||0;
+    const o = {v:0};
+    gsap.to(o,{v:target,duration:1.4,ease:'power2.out',onUpdate(){
+      let n = Math.round(o.v).toString();
+      if(pad) n = n.padStart(pad,'0');
+      el.textContent = prefix+n;
+    }});
+  });
+}
+
+/* ================= CURSOR ================= */
+const dot = document.getElementById('cDot');
+const ring = document.getElementById('cRing');
+let cmx=innerWidth/2,cmy=innerHeight/2,crx=cmx,cry=cmy;
+
+addEventListener('mousemove',e=>{cmx=e.clientX;cmy=e.clientY;
+  dot.style.transform=`translate3d(${cmx+50}px,${cmy+50}px,0)`;
+});
+(function loop(){
+  crx += (cmx-crx)*.16; cry += (cmy-cry)*.16;
+  ring.style.transform=`translate3d(${crx+50}px,${cry+50}px,0)`;
+  requestAnimationFrame(loop);
+})();
+
+document.querySelectorAll('a,button,[data-hover]').forEach(el=>{
+  el.addEventListener('mouseenter',()=>ring.classList.add('hovered'));
+  el.addEventListener('mouseleave',()=>ring.classList.remove('hovered'));
+});
+document.querySelectorAll('[data-cursor="play"]').forEach(el=>{
+  el.addEventListener('mouseenter',()=>ring.classList.add('play'));
+  el.addEventListener('mouseleave',()=>ring.classList.remove('play'));
+});
+
+/* ================= MAGNETIC ================= */
+document.querySelectorAll('[data-magnetic]').forEach(el=>{
+  const strength = 22;
+  el.addEventListener('mousemove',e=>{
+    const r = el.getBoundingClientRect();
+    const x = e.clientX-(r.left+r.width/2);
+    const y = e.clientY-(r.top+r.height/2);
+    gsap.to(el,{x:x/r.width*strength,y:y/r.height*strength,duration:.4,ease:'power3.out'});
+  });
+  el.addEventListener('mouseleave',()=>{
+    gsap.to(el,{x:0,y:0,duration:.6,ease:'elastic.out(1,.4)'});
+  });
+});
+
+/* ================= CARD TILT + GLOW ================= */
+document.querySelectorAll('[data-tilt]').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r = card.getBoundingClientRect();
+    const px = (e.clientX-r.left)/r.width;
+    const py = (e.clientY-r.top)/r.height;
+    card.style.setProperty('--mx',(px*100)+'%');
+    card.style.setProperty('--my',(py*100)+'%');
+    gsap.to(card,{
+      rotateY:(px-.5)*6, rotateX:(0.5-py)*6,
+      transformPerspective:900,duration:.5,ease:'power2.out'
+    });
+  });
+  card.addEventListener('mouseleave',()=>{
+    gsap.to(card,{rotateX:0,rotateY:0,duration:.7,ease:'elastic.out(1,.5)'});
+  });
+});
+
+/* ================= LIGHTBOX ================= */
+const lb = document.getElementById('lightbox');
+const lbVideo = document.getElementById('lbVideo');
+document.querySelectorAll('[data-video]').forEach(card=>{
+  card.addEventListener('click',()=>{
+    const src = card.dataset.video;
+    if(!src || card.classList.contains('empty')) return;
+    lbVideo.src = src;
+    lb.classList.add('open');
+    lbVideo.play();
+  });
+});
+function closeLB(){ lb.classList.remove('open'); lbVideo.pause(); lbVideo.src=''; }
+lb.addEventListener('click',e=>{ if(e.target===lb) closeLB(); });
 </script>
 
 </body>
