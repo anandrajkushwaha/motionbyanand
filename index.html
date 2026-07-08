@@ -800,6 +800,48 @@
   /* media cards (dark visuals) light card pe bhi theek — sirf border halka */
   .bento .media-card{background:#0e0e12;}
 
+  /* ---------- ABOUT ME ---------- */
+  .about-sec{max-width:1060px;margin:0 auto;padding:30px 24px 70px;}
+  .about-card{
+    display:grid;grid-template-columns:320px 1fr;gap:40px;align-items:center;
+    background:#fff;border:1px solid rgba(10,15,25,.08);border-radius:24px;
+    padding:40px;box-shadow:0 24px 50px rgba(20,30,45,.1);
+    opacity:0;transform:translateY(36px);
+  }
+  .about-photo{border-radius:18px;overflow:hidden;aspect-ratio:4/4.6;}
+  .about-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
+  .about-body .kicker{color:#6a7380;}
+  .about-body h2{
+    font-size:clamp(26px,3.6vw,40px);font-weight:800;letter-spacing:-.03em;
+    color:#12151b;margin-top:8px;line-height:1.08;
+  }
+  .about-body h2 em{font-style:italic;font-family:Georgia,serif;font-weight:400;color:var(--accent);}
+  .about-body p{font-size:15px;line-height:1.7;color:#5b6470;margin-top:16px;max-width:520px;}
+  .about-socials{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;}
+  .soc-pill{
+    border:1px solid rgba(10,15,25,.16);color:#3a424e;text-decoration:none;
+    padding:9px 18px;border-radius:999px;font-size:13px;font-weight:600;
+    transition:all .25s;
+  }
+  .soc-pill:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+  .about-ctas{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap;}
+  .btn-resume{
+    background:#12151b;color:#fff;text-decoration:none;
+    padding:14px 26px;border-radius:999px;font-size:14px;font-weight:700;
+    display:inline-flex;align-items:center;gap:8px;transition:background .25s;
+  }
+  .btn-resume:hover{background:var(--accent);}
+  .btn-wa{
+    background:#25d366;color:#fff;text-decoration:none;
+    padding:14px 26px;border-radius:999px;font-size:14px;font-weight:700;
+    display:inline-flex;align-items:center;gap:9px;transition:background .25s;
+  }
+  .btn-wa:hover{background:#1eb658;}
+  @media(max-width:800px){
+    .about-card{grid-template-columns:1fr;gap:26px;padding:26px;}
+    .about-photo{max-width:280px;}
+  }
+
   /* ---------- FOOTER ---------- */
   footer{
     max-width:1060px;margin:0 auto;padding:34px 24px 44px;text-align:center;
@@ -811,6 +853,42 @@
   .foot-links a:hover{color:var(--ink);}
   .copy{font-size:12px;color:var(--muted);}
   .copy a{color:var(--accent);text-decoration:none;}
+
+  /* ---------- DOCK PILL ---------- */
+  .dock{
+    position:fixed;left:50%;bottom:4.5vh;z-index:90;
+    display:flex;align-items:center;gap:7px;
+    padding:7px 8px;border-radius:999px;
+    background:rgba(17,17,22,.72);backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 16px 44px rgba(0,0,0,.4);
+    transform:translate(-50%,180%);opacity:0;
+    transition:background .8s ease,border-color .8s ease;
+    will-change:transform,opacity;
+  }
+  .dock-dp{width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:center top;display:block;}
+  .dock-ic{
+    width:36px;height:36px;border-radius:50%;display:grid;place-items:center;
+    color:rgba(255,255,255,.85);text-decoration:none;font-size:12px;font-weight:700;
+    background:rgba(255,255,255,.07);transition:background .25s,color .25s,transform .25s;
+  }
+  .dock-ic:hover{background:var(--accent);color:#fff;transform:translateY(-3px);}
+  .dock-wa{
+    display:inline-flex;align-items:center;gap:7px;
+    background:#25d366;color:#fff;text-decoration:none;
+    padding:10px 18px;border-radius:999px;font-size:12.5px;font-weight:700;
+    transition:background .25s,transform .25s;
+  }
+  .dock-wa:hover{background:#1eb658;transform:translateY(-3px);}
+  /* light theme me pill white glass */
+  body.lightbg .dock{background:rgba(255,255,255,.82);border-color:rgba(10,15,25,.12);box-shadow:0 16px 44px rgba(20,30,45,.18);}
+  body.lightbg .dock-ic{color:#3a424e;background:rgba(10,15,25,.06);}
+  body.lightbg .dock-ic:hover{background:var(--accent);color:#fff;}
+  @media(max-width:600px){
+    .dock{gap:5px;padding:6px 7px;bottom:3vh;}
+    .dock-dp,.dock-ic{width:32px;height:32px;}
+    .dock-wa{padding:9px 14px;font-size:12px;}
+  }
 
   /* ---------- LIGHTBOX ---------- */
   .lightbox{position:fixed;inset:0;background:rgba(5,5,8,.94);display:none;place-items:center;z-index:100;padding:4vw;}
@@ -842,6 +920,39 @@
   }
   @media(prefers-reduced-motion:reduce){
     *{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+  }
+
+  /* ================= PHONE POLISH (sab overrides last me) ================= */
+  @media(max-width:600px){
+    /* section spacing tighter */
+    .works-sec,.ai-sec,.bh-sec,.ai-vid-sec,.about-sec{padding-left:18px;padding-right:18px;}
+    .sec-head h2,.sec-head-light h2{font-size:30px;}
+
+    /* Product UI: har card ko apni saans — clutter khatam */
+    .w-lg{min-height:400px;}
+    .w-tall{min-height:450px;}
+    .w-sm{min-height:360px;}
+    .ui-demo{gap:16px;}
+    .ccard{width:min(295px,82%);}
+    .pay-btn{min-width:150px;height:44px;font-size:13.5px;}
+    .mp{width:min(230px,84%);}
+    .ios-panel{width:min(245px,86%);}
+    .stk-deck{width:min(245px,86%);height:192px;}
+    .phone-top{width:min(265px,88%);}
+
+    /* Motion Graphics grid: portrait card ko poori height */
+    .bv-tall{min-height:480px;}
+
+    /* pill thodi badi + comfortable */
+    .dock{gap:6px;padding:8px 9px;bottom:3.2vh;}
+    .dock-dp,.dock-ic{width:38px;height:38px;font-size:12.5px;}
+    .dock-wa{padding:11px 17px;font-size:13px;}
+
+    /* about card breathing room */
+    .about-card{padding:22px;gap:22px;}
+    .about-body p{font-size:14px;}
+    .about-ctas{gap:10px;}
+    .btn-resume,.btn-wa{padding:13px 20px;font-size:13px;}
   }
 </style>
 </head>
@@ -901,7 +1012,7 @@
 <section class="bh-sec" id="bhSec">
   <div class="sec-head">
     <div class="kicker">Selected Work</div>
-    <h2>Motion, <em>shipped.</em></h2>
+    <h2>Motion Graphics</h2>
   </div>
   <div class="bh-grid" id="bhGrid">
     <div class="bhcard bv-lg" data-video="work-08.mp4" data-cursor="play" data-hover>
@@ -935,7 +1046,7 @@
 <section class="works-sec" id="works">
   <div class="sec-head">
     <div class="kicker">Selected Work</div>
-    <h2>Product <em>UI Motion.</em></h2>
+    <h2>Product UI</h2>
   </div>
   <div class="work-grid" id="workGrid">
 
@@ -1104,7 +1215,7 @@
 <section class="ai-sec" id="aiSec">
   <div class="sec-head">
     <div class="kicker">Concept Series</div>
-    <h2>Voice AI <em>concepts.</em></h2>
+    <h2>Voice AI</h2>
   </div>
   <div class="ai-grid" id="aiGrid">
 
@@ -1281,7 +1392,7 @@
 <section class="ai-vid-sec" id="aiVidSec">
   <div class="sec-head sec-head-light">
     <div class="kicker">Generative</div>
-    <h2>AI <em>films.</em></h2>
+    <h2>AI Videos</h2>
   </div>
   <div class="aiv-grid" id="aivGrid">
     <div class="aivcard av-lg" data-video="ai-brand.mp4" data-cursor="play" data-hover>
@@ -1297,13 +1408,51 @@
 </section>
 
 
-<footer id="contact">
-  <div class="logo">Anand Raj</div>
-  <div class="foot-links">
-    <a href="#home" data-hover>Home</a><a href="#works" data-hover>Works</a><a href="#contact" data-hover>Contact</a>
+<!-- ============ SECTION 6: ABOUT ME ============ -->
+<section class="about-sec" id="about">
+  <div class="about-card">
+    <div class="about-photo">
+      <img src="dp.jpg" alt="Anand Raj Kushwaha">
+    </div>
+    <div class="about-body">
+      <h2>A little about me.</h2>
+      <p>I spend most of my time creating, experimenting, and figuring out better ways
+      to tell stories. Sometimes that means designing motion graphics, sometimes building
+      interactive experiences, and sometimes getting lost in 3D, AI, or a random idea that
+      refuses to leave my head. I'm always looking for new ways to make ideas feel more alive.</p>
+
+      <div class="about-socials">
+        <a href="https://www.behance.net/anandrajkushwaha" target="_blank" rel="noopener" class="soc-pill" data-hover>Behance ↗</a>
+        <a href="https://www.linkedin.com/in/graphicbyanand/" target="_blank" rel="noopener" class="soc-pill" data-hover>LinkedIn ↗</a>
+        <a href="https://www.instagram.com/anand_raj_1/" target="_blank" rel="noopener" class="soc-pill" data-hover>Instagram ↗</a>
+      </div>
+
+      <div class="about-ctas">
+        <a href="resume.pdf" download="Anand Raj CV.pdf" class="btn-resume" data-hover data-magnetic>↓ Download Resume</a>
+        <a href="https://wa.me/917525864664?text=Hi%20Anand!%20Saw%20your%20portfolio%20%E2%80%94%20let%27s%20talk." target="_blank" rel="noopener" class="btn-wa" data-hover data-magnetic>
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-3c-.3-.4 0-.5.1-.7l.4-.5c.1-.2.2-.3.3-.5v-.5c0-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.5 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2l-.5-.3z"/></svg>
+          WhatsApp Me
+        </a>
+      </div>
+    </div>
   </div>
+</section>
+
+<footer id="contact">
   <div class="copy">© 2026 All rights reserved · <a href="mailto:anandrajkushwaha4@gmail.com" data-hover>anandrajkushwaha4@gmail.com</a></div>
 </footer>
+
+<!-- FLOATING DOCK PILL -->
+<div class="dock" id="dock">
+  <img src="dp.jpg" class="dock-dp" alt="Anand Raj">
+  <a href="https://www.behance.net/anandrajkushwaha" target="_blank" rel="noopener" class="dock-ic" title="Behance" data-hover>Be</a>
+  <a href="https://www.linkedin.com/in/graphicbyanand/" target="_blank" rel="noopener" class="dock-ic" title="LinkedIn" data-hover>in</a>
+  <a href="https://www.instagram.com/anand_raj_1/" target="_blank" rel="noopener" class="dock-ic" title="Instagram" data-hover>IG</a>
+  <a href="https://wa.me/917525864664?text=Hi%20Anand!%20Saw%20your%20portfolio%20%E2%80%94%20let%27s%20talk." target="_blank" rel="noopener" class="dock-wa" data-hover>
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-3c-.3-.4 0-.5.1-.7l.4-.5c.1-.2.2-.3.3-.5v-.5c0-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.5 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2l-.5-.3z"/></svg>
+    WhatsApp
+  </a>
+</div>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
@@ -1683,6 +1832,76 @@ const vio=new IntersectionObserver(es=>{
   });
 },{threshold:.25});
 document.querySelectorAll('.bhcard video,.aivcard video').forEach(v=>vio.observe(v));
+
+/* ================= DOCK PILL ================= */
+const dock=document.getElementById('dock');
+/* page khulne ke ~2s baad neeche se smooth rise */
+gsap.delayedCall(2,()=>{
+  if(document.body.dataset.dockGone) return;
+  gsap.to(dock,{y:0,opacity:1,duration:.9,ease:'power4.out',
+    onStart(){ gsap.set(dock,{xPercent:-50,yPercent:0,y:120}); }
+  });
+});
+/* TRUE MORPH: card pill ki EXACT jagah, EXACT size, pill-shape me start hota hai.
+   Pill usi frame gayab — aankh ko lagta hai pill hi expand ho ke card ban gayi.
+   Phir DP aur content andar fill hote hain. */
+const aboutCard=document.querySelector('.about-card');
+const aboutPhoto=document.querySelector('.about-photo');
+const aboutBody=document.querySelector('.about-body');
+const dockItems=dock.children;
+ScrollTrigger.create({
+  trigger:'.about-sec', start:'top 68%',
+  onEnter(){
+    document.body.dataset.dockGone='1';
+    /* card ki asli geometry (transform hata ke) */
+    gsap.set(aboutCard,{y:0,opacity:0});
+    const d=dock.getBoundingClientRect();
+
+    /* pill ko px geometry pe lock karo (same visual) */
+    gsap.set(dock,{bottom:'auto',top:d.top,left:d.left,xPercent:0,y:0,width:d.width,height:d.height});
+    gsap.set([aboutPhoto,aboutBody],{autoAlpha:0});
+    gsap.to(dockItems,{opacity:0,duration:.25,ease:'power1.out'});
+
+    const start={top:d.top,left:d.left,w:d.width,h:d.height,r:d.height/2};
+    /* har frame card ki LIVE position naapo — fast scroll me bhi pill card pe hi jaayegi */
+    function sync(t){
+      const c=aboutCard.getBoundingClientRect();
+      gsap.set(dock,{
+        top:  start.top +(c.top  -start.top )*t,
+        left: start.left+(c.left -start.left)*t,
+        width:start.w   +(c.width-start.w  )*t,
+        height:start.h  +(c.height-start.h )*t,
+        borderRadius:(start.r+(24-start.r)*t)+'px'
+      });
+    }
+    const p={t:0};
+    gsap.to(p,{t:1,duration:1.05,ease:'power2.inOut',
+      onUpdate(){ sync(p.t); },
+      onComplete(){
+        gsap.set(aboutCard,{opacity:1});
+        /* fade ke dauran bhi pill card se chipki rahe */
+        const glue=()=>sync(1);
+        gsap.ticker.add(glue);
+        gsap.to(dock,{opacity:0,duration:.28,ease:'power1.out',
+          onComplete(){ gsap.ticker.remove(glue); }});
+        /* content ek-ek karke animate hota hai — fill hone ka feel */
+        gsap.fromTo(aboutPhoto,{autoAlpha:0,scale:.82,y:10},{autoAlpha:1,scale:1,y:0,duration:.55,ease:'power3.out',delay:.05});
+        gsap.set(aboutBody,{autoAlpha:1});
+        gsap.fromTo(aboutBody.children,
+          {autoAlpha:0,y:18},
+          {autoAlpha:1,y:0,duration:.5,stagger:.09,ease:'power3.out',delay:.12});
+      }
+    });
+  },
+  onLeaveBack(){
+    delete document.body.dataset.dockGone;
+    gsap.set(aboutCard,{opacity:0});
+    /* pill wapas apni asli dock shakal me */
+    gsap.set(dock,{clearProps:'top,left,bottom,width,height,borderRadius'});
+    gsap.set(dock,{xPercent:-50,y:0,opacity:1});
+    gsap.set(dockItems,{opacity:1});
+  }
+});
 
 /* AI films reveal */
 gsap.to('.aivcard',{
