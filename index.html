@@ -1887,7 +1887,10 @@ ScrollTrigger.create({
         const glue=()=>sync(1);
         gsap.ticker.add(glue);
         gsap.to(dock,{opacity:0,duration:.28,ease:'power1.out',
-          onComplete(){ gsap.ticker.remove(glue); }});
+          onComplete(){
+            gsap.ticker.remove(glue);
+            gsap.set(dock,{visibility:'hidden'});   /* clicks card tak jayen */
+          }});
         /* content ek-ek karke animate hota hai — fill hone ka feel */
         gsap.fromTo(aboutPhoto,{autoAlpha:0,scale:.82,y:10},{autoAlpha:1,scale:1,y:0,duration:.55,ease:'power3.out',delay:.05});
         gsap.set(aboutBody,{autoAlpha:1});
@@ -1901,8 +1904,8 @@ ScrollTrigger.create({
     delete document.body.dataset.dockGone;
     gsap.set(aboutCard,{opacity:0});
     /* pill wapas apni asli dock shakal me */
-    gsap.set(dock,{clearProps:'top,left,bottom,width,height,borderRadius'});
-    gsap.set(dock,{xPercent:-50,y:0,opacity:1});
+    gsap.set(dock,{clearProps:'top,left,bottom,width,height,borderRadius,visibility'});
+    gsap.set(dock,{xPercent:-50,y:0,opacity:1,visibility:'visible'});
     gsap.set(dockItems,{opacity:1});
   }
 });
