@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anand Raj Kushwaha — Motion Graphics Designer</title>
+<title>Anand Raj Kushwaha — Product Designer & Motion Artist</title>
+<meta name="description" content="Anand Raj Kushwaha — product designer and motion artist. I build products end to end, like Cheatcode, and make ideas move.">
+<meta property="og:title" content="Anand Raj Kushwaha — Product Designer & Motion Artist">
+<meta property="og:description" content="Products I build, motion I make. See the Cheatcode case study and selected motion work.">
+<meta property="og:image" content="https://motionbyanand.com/cheatcode/cover.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <style>
   :root{
     --bg:#0a0a0b;
@@ -954,6 +960,77 @@
     .about-ctas{gap:10px;}
     .btn-resume,.btn-wa{padding:13px 20px;font-size:13px;}
   }
+
+  /* ================= PRODUCT: what I build ================= */
+  .prod-sec{max-width:1060px;margin:0 auto;padding:70px 24px 30px;}
+  .prod-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:26px;}
+  .prod-head .sec-head{margin-bottom:0;}
+  .prod-head .sec-head h2 em{color:#fff;}
+  .prod-lede{max-width:360px;font-size:14.5px;line-height:1.6;color:var(--muted);}
+  .prod-card{
+    position:relative;border-radius:28px;overflow:hidden;
+    background:#f4f3ef;color:#111216;
+    padding:clamp(22px,3.4vw,40px) clamp(22px,3.4vw,40px) 0;
+    opacity:0;transform:translateY(40px);
+    transition:box-shadow .5s;
+  }
+  .prod-card:hover{box-shadow:0 30px 80px rgba(77,107,255,.18);}
+  .prod-top{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:clamp(24px,4vw,56px);align-items:start;}
+  .prod-side{display:flex;flex-direction:column;gap:26px;}
+  .prod-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#4a4f5a;
+    background:#fff;border:1px solid #e3e1da;border-radius:999px;padding:7px 13px;
+  }
+  .prod-tag i{width:7px;height:7px;border-radius:50%;background:#39d97e;}
+  .prod-title{font-size:clamp(34px,4.8vw,56px);font-weight:800;letter-spacing:-.045em;line-height:1;margin-top:18px;}
+  .prod-title em{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-weight:400;letter-spacing:-.02em;}
+  .prod-sub{margin-top:14px;max-width:520px;font-size:15.5px;line-height:1.6;color:#4a4f5a;}
+  .prod-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+  .prod-chips span{font-size:12px;font-weight:500;color:#2a2d34;border:1px solid #dcdad2;border-radius:999px;padding:6px 12px;}
+  .prod-ctas{display:flex;flex-direction:column;gap:10px;}
+  .prod-read,.prod-visit{justify-content:center;text-align:center;}
+  .prod-read{
+    background:#111216;color:#fff;text-decoration:none;
+    padding:15px 24px;border-radius:999px;font-size:14px;font-weight:700;
+    display:inline-flex;align-items:center;gap:10px;transition:background .25s;
+  }
+  .prod-read::after{content:'';position:absolute;inset:0;z-index:1;border-radius:inherit;}
+  .prod-card:hover .prod-read{background:var(--accent);}
+  .prod-read b{display:inline-block;transition:transform .3s;}
+  .prod-card:hover .prod-read b{transform:translateX(4px);}
+  .prod-visit{
+    position:relative;z-index:2;
+    color:#111216;text-decoration:none;font-size:13.5px;font-weight:600;
+    border:1px solid #cfccc3;border-radius:999px;padding:11px 20px;transition:border-color .25s,background .25s;
+  }
+  .prod-visit:hover{border-color:#111216;background:#fff;}
+  .prod-stats{display:flex;flex-direction:column;border-top:1px solid #e3e1da;}
+  .prod-stats div{display:flex;justify-content:space-between;align-items:baseline;padding:12px 2px;border-bottom:1px solid #e3e1da;}
+  .prod-stats b{font-size:22px;font-weight:800;letter-spacing:-.03em;order:2;}
+  .prod-stats span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#7a7f89;}
+  .prod-shot{
+    margin-top:34px;border-radius:18px 18px 0 0;overflow:hidden;
+    background:#fff;border:1px solid #e3e1da;border-bottom:0;
+    box-shadow:0 -10px 40px rgba(20,22,30,.08);
+    transform-origin:50% 100%;
+  }
+  .prod-bar{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid #eeece6;background:#fbfaf7;}
+  .prod-bar i{width:10px;height:10px;border-radius:50%;background:#e2dfd7;}
+  .prod-bar span{margin-left:12px;font-size:12px;color:#8a8e97;background:#f1efe9;border-radius:999px;padding:4px 14px;}
+  .prod-shot img{display:block;width:100%;height:auto;transition:transform 1.2s cubic-bezier(.2,.7,.2,1);}
+  .prod-card:hover .prod-shot img{transform:scale(1.025);}
+  @media(max-width:700px){
+    .prod-sec{padding-left:18px;padding-right:18px;}
+    .prod-top{grid-template-columns:1fr;}
+    .prod-ctas{flex-direction:row;}
+    .prod-read{padding:13px 20px;font-size:13.5px;}
+    .prod-visit{display:inline-flex;align-items:center;}
+    .prod-stats{flex-direction:row;border:0;gap:20px;}
+    .prod-stats div{flex-direction:column;padding:0;border:0;}
+    .prod-stats b{order:0;}
+    .prod-shot{margin-top:24px;}
+  }
 </style>
 </head>
 <body>
@@ -974,7 +1051,7 @@
 <nav id="nav">
   <div class="logo">Anand Raj</div>
   <div class="nav-links">
-    <a href="#home" data-hover>Home</a><a href="#bhSec" data-hover>Works</a><a href="#contact" data-hover>Contact</a>
+    <a href="#home" data-hover>Home</a><a href="#product" data-hover>Product</a><a href="#bhSec" data-hover>Motion</a><a href="#contact" data-hover>Contact</a>
   </div>
   <a class="cta" href="mailto:anandrajkushwaha4@gmail.com" data-hover data-magnetic>Let's talk</a>
 </nav>
@@ -992,7 +1069,7 @@
     </h1>
 
     <div class="hero-btns">
-      <a class="btn-primary" href="#bhSec" data-hover data-magnetic>View my work ↓</a>
+      <a class="btn-primary" href="#product" data-hover data-magnetic>View my work ↓</a>
     </div>
   </div>
 
@@ -1001,16 +1078,53 @@
 
 <div class="marquee" id="marquee">
   <div class="marquee-track">
+    <span><b>Product Thinking</b> ✦</span><span>Product Design ✦</span>
     <span><b>Motion Design</b> ✦</span><span>Lottie Animation ✦</span>
-    <span>3D Animation ✦</span><span>3D Product Modelling ✦</span>
-    <span>Visual Design ✦</span><span>Product Design ✦</span>
-    <span><b>AI-powered Workflows</b> ✦</span>
+    <span>3D Animation ✦</span><span>Visual Design ✦</span>
+    <span>Design to Code ✦</span><span><b>AI-powered Workflows</b> ✦</span>
+    <span><b>Product Thinking</b> ✦</span><span>Product Design ✦</span>
     <span><b>Motion Design</b> ✦</span><span>Lottie Animation ✦</span>
-    <span>3D Animation ✦</span><span>3D Product Modelling ✦</span>
-    <span>Visual Design ✦</span><span>Product Design ✦</span>
-    <span><b>AI-powered Workflows</b> ✦</span>
+    <span>3D Animation ✦</span><span>Visual Design ✦</span>
+    <span>Design to Code ✦</span><span><b>AI-powered Workflows</b> ✦</span>
   </div>
 </div>
+
+<!-- ============ SECTION 1.5: PRODUCT — WHAT I BUILD ============ -->
+<section class="prod-sec" id="product">
+  <div class="prod-head">
+    <div class="sec-head">
+      <div class="kicker">Product Thinking</div>
+      <h2>Things I build <em>as products.</em></h2>
+    </div>
+    <p class="prod-lede">Motion makes an idea feel alive. Product makes it useful. I take ideas from the problem to the flows, the interface and the shipped code.</p>
+  </div>
+
+  <article class="prod-card" data-hover>
+    <div class="prod-top">
+      <div>
+        <span class="prod-tag"><i></i>Live product · 2026</span>
+        <h3 class="prod-title">Cheatcode — a career <em>cheat sheet.</em></h3>
+        <p class="prod-sub">The resume builder, ATS checker, AI mock interviews and job search that India's freshers and early-career people never had someone to show them. I designed and built it end to end.</p>
+        <div class="prod-chips"><span>Product strategy</span><span>UX &amp; UI</span><span>Brand &amp; visuals</span><span>Front-end build</span></div>
+      </div>
+      <div class="prod-side">
+        <div class="prod-ctas">
+          <a class="prod-read" href="cheatcode.html">Read case study <b>→</b></a>
+          <a class="prod-visit" href="https://cheatcodeapp.com" target="_blank" rel="noopener" data-hover>Visit site ↗</a>
+        </div>
+        <div class="prod-stats">
+          <div><b>60</b><span>Resume templates</span></div>
+          <div><b>4</b><span>Core tools</span></div>
+          <div><b>₹99</b><span>Pro / month</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="prod-shot">
+      <div class="prod-bar"><i></i><i></i><i></i><span>cheatcodeapp.com</span></div>
+      <img src="cheatcode/cover.jpg" alt="Cheatcode home page — You have a Cheatcode for your career" loading="lazy" width="1600" height="1000">
+    </div>
+  </article>
+</section>
 
 <!-- ============ SECTION 2: SELECTED WORK (VIDEOS) ============ -->
 <section class="bh-sec" id="bhSec">
@@ -1420,10 +1534,11 @@
     </div>
     <div class="about-body">
       <h2>A little about me.</h2>
-      <p>I spend most of my time creating, experimenting, and figuring out better ways
-      to tell stories. Sometimes that means designing motion graphics, sometimes building
-      interactive experiences, and sometimes getting lost in 3D, AI, or a random idea that
-      refuses to leave my head. I'm always looking for new ways to make ideas feel more alive.</p>
+      <p>I'm a product designer who thinks in motion. Sometimes that means building a
+      whole product, like Cheatcode, from the first problem statement to the shipped code.
+      Sometimes it means motion graphics, interactive experiences, or getting lost in 3D, AI,
+      or a random idea that refuses to leave my head. Either way, I'm looking for ways to make
+      ideas feel more alive, and more useful.</p>
 
       <div class="about-socials">
         <a href="https://www.behance.net/anandrajkushwaha" target="_blank" rel="noopener" class="soc-pill" data-hover>Behance ↗</a>
@@ -1918,6 +2033,20 @@ gsap.to('.aivcard',{
 gsap.from('.ai-vid-sec .sec-head > *',{
   opacity:0,y:24,duration:.7,stagger:.1,ease:'power3.out',
   scrollTrigger:{trigger:'.ai-vid-sec',start:'top 84%',once:true}
+});
+
+/* product card reveal + screenshot rises as you scroll */
+gsap.to('.prod-card',{
+  opacity:1,y:0,duration:.95,ease:'power4.out',
+  scrollTrigger:{trigger:'.prod-card',start:'top 85%',once:true}
+});
+gsap.from('.prod-head > *',{
+  opacity:0,y:24,duration:.7,stagger:.1,ease:'power3.out',
+  scrollTrigger:{trigger:'.prod-sec',start:'top 84%',once:true}
+});
+gsap.fromTo('.prod-shot',{y:60,rotateX:8,transformPerspective:1200},{
+  y:0,rotateX:0,ease:'none',
+  scrollTrigger:{trigger:'.prod-card',start:'top 90%',end:'bottom 70%',scrub:true}
 });
 
 /* behance cards reveal */
